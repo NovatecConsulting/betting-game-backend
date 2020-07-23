@@ -1,0 +1,5 @@
+# Configuration file
+openliga:
+  restclient:
+    OpenLigaAccessor/mp-rest/url: https://www.openligadb.de/api
+    OpenLigaAccessor/mp-rest/scope: javax.inject.Singleton
