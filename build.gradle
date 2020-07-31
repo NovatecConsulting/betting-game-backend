@@ -26,6 +26,7 @@ dependencies {
     testCompile 'io.mockk:mockk:1.10.0'
     testCompile 'org.skyscreamer:jsonassert:1.5.0'
     testCompile 'com.github.tomakehurst:wiremock-jre8:2.27.0'
+    testCompile 'org.assertj:assertj-core:3.16.1'
 
 }
 

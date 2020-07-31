@@ -1,6 +1,7 @@
 package de.novatec.betting.game.matchday
 
 import de.novatec.betting.game.openliga.OpenLigaAccessor
+import de.novatec.betting.game.openliga.model.MatchDay
 import org.eclipse.microprofile.rest.client.inject.RestClient
 import javax.inject.Singleton
 
@@ -11,9 +12,9 @@ class MatchDayService(
 ) {
 
     /**
-     * Gets the current [de.novatec.betting.game.rest.integration.data.MatchDay], with all pairings of that match day.
+     * Gets the current [MatchDay] with all pairings of.
      *
-     * @return A list of all pairings of the current [de.novatec.betting.game.rest.integration.data.MatchDay].
+     * @return A [List] of [MatchDay]s containing all pairings.
      */
-    fun getCurrentMatchDay() = openLigaAccessor.getCurrentMatchDay()
+    fun getCurrentMatchDay(): List<MatchDay> = openLigaAccessor.getCurrentMatchDay()
 }

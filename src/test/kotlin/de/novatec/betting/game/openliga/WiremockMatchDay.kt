@@ -1,20 +1,17 @@
 package de.novatec.betting.game.openliga
 
 import com.github.tomakehurst.wiremock.WireMockServer
-import io.quarkus.test.common.QuarkusTestResourceLifecycleManager
-
 import com.github.tomakehurst.wiremock.client.WireMock.*
+import io.quarkus.test.common.QuarkusTestResourceLifecycleManager
 import java.util.*
 
 
 class WiremockMatchDay: QuarkusTestResourceLifecycleManager {
 
-    private var wireMockServer: WireMockServer? = null
+    private val wireMockServer = WireMockServer()
 
     override fun start(): MutableMap<String, String> {
-        wireMockServer = WireMockServer()
-
-        wireMockServer!!.start()
+        wireMockServer.start()
 
         stubFor(get(urlEqualTo("/getmatchdata/bl1"))
             .willReturn(aResponse()
@@ -57,10 +54,10 @@ class WiremockMatchDay: QuarkusTestResourceLifecycleManager {
 						"""
                 )))
 
-        return Collections.singletonMap("openliga.restclient.OpenLigaAccessor/mp-rest/url", wireMockServer!!.baseUrl());
+        return Collections.singletonMap("openliga.restclient.OpenLigaAccessor/mp-rest/url", wireMockServer.baseUrl())
     }
 
     override fun stop() {
-        wireMockServer?.stop()
+        wireMockServer.stop()
     }
 }
