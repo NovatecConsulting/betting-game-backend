@@ -5,7 +5,7 @@ import org.hamcrest.TypeSafeMatcher
 import org.skyscreamer.jsonassert.JSONCompare
 import org.skyscreamer.jsonassert.JSONCompareMode.NON_EXTENSIBLE
 
-class JsonMatcher(private val expectedJson: String): TypeSafeMatcher<String>() {
+class JsonMatcher(private val expectedJson: String) : TypeSafeMatcher<String>() {
 
     companion object {
         fun jsonEqualTo(expectedJson: String) = JsonMatcher(expectedJson)

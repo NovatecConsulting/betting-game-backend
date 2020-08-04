@@ -1,7 +1,7 @@
 package de.novatec.betting.game.matchday
 
 
-import de.novatec.betting.game.openliga.data.*
+import de.novatec.betting.game.openliga.model.*
 import io.mockk.every
 import io.mockk.mockk
 import io.quarkus.test.Mock
@@ -14,11 +14,11 @@ import java.util.*
 import javax.enterprise.inject.Produces
 import javax.ws.rs.core.MediaType
 
-val matchDayService = mockk<MatchDayService>()
+val matchDayService: MatchDayService = mockk()
 
 @IntegrationTest
 @QuarkusTest
-class MatchDayControllerIntTest {
+class MatchDayRestControllerIntTest {
 
     @Produces
     @Mock
