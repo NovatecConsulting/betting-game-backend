@@ -1,5 +1,5 @@
 # betting-game-backend
-Link to Frontend Repo: https://github.com/mbagemihl/betting-game-frontend
+Link to Frontend Repo: https://github.com/NovatecConsulting/betting-game-frontend
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
