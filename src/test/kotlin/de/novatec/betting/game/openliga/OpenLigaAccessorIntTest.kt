@@ -23,4 +23,11 @@ class OpenLigaAccessorIntTest {
         assertThat(result.size).isEqualTo(1)
         assertThat(result[0].matchID).isEqualTo(55574L)
     }
+
+    @Test
+    fun `GET - requests all matches of a specified season from the openliga api`() {
+        val result = openLigaAccessor.getAllMatchesOfSeason("2019")
+        assertThat(result.size).isEqualTo(1)
+        assertThat(result[0].matchID).isEqualTo(55277L)
+    }
 }

@@ -1,6 +1,7 @@
 package de.novatec.betting.game.matchday
 
 
+import de.novatec.betting.game.matchday.model.MatchDayOverview
 import de.novatec.betting.game.openliga.model.*
 import io.mockk.every
 import io.mockk.mockk
@@ -10,7 +11,10 @@ import io.restassured.RestAssured.given
 import org.junit.jupiter.api.Test
 import utils.JsonMatcher
 import utils.classification.IntegrationTest
-import java.util.*
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
 import javax.enterprise.inject.Produces
 import javax.ws.rs.core.MediaType
 
@@ -30,11 +34,11 @@ class MatchDayRestControllerIntTest {
             [
                 {
                     "MatchID": 55574,
-                    "MatchDateTime": 1593271800000,
+                    "MatchDateTime": "2020-06-27T16:30",
                     "TimeZoneID": "W. Europe Standard Time",
                     "LeagueId": 4362,
                     "LeagueName": "1. Fußball-Bundesliga 2019/2020",
-                    "MatchDateTimeUTC": 1593264600000,
+                    "MatchDateTimeUTC": "2020-06-27T13:30Z[UTC]",
                     "Group": {
                         "GroupName": "34. Spieltag",
                         "GroupOrderID": 34,
@@ -54,7 +58,7 @@ class MatchDayRestControllerIntTest {
                         "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/TSG_Logo-Standard_4c.png",
                         "TeamGroupName": null
                     },
-                    "LastUpdateDateTime": 1593278560530,
+                    "LastUpdateDateTime": "2020-06-27T18:22:40.530",
                     "MatchIsFinished": true,
                     "MatchResults": [
                         {
@@ -132,36 +136,39 @@ class MatchDayRestControllerIntTest {
             ]
         """
 
-        val currentMatchDay = MatchDay(
+        val currentMatchDay = OLMatchDay(
             matchID = 55574,
-            matchDateTime = Date(1593271800000),
+            matchDateTime = LocalDateTime.ofInstant(
+                Instant.ofEpochMilli(1593271800000L), ZoneId.of("WET")),
             timeZoneID = "W. Europe Standard Time",
             leagueId = 4362,
             leagueName = "1. Fußball-Bundesliga 2019/2020",
-            matchDateTimeUTC = Date(1593264600000),
-            group = Group(
+            matchDateTimeUTC = ZonedDateTime.ofInstant(
+                Instant.ofEpochMilli(1593264600000L), ZoneId.of("UTC")),
+            group = OLGroup(
                 groupName = "34. Spieltag",
                 groupOrderID = 34,
                 groupID = 34233
             ),
-            team1 = Team(
+            team1 = OLTeam(
                 teamId = 7,
                 shortName = "Dortmund",
                 teamName = "Borussia Dortmund",
                 teamIconUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/240px-Borussia_Dortmund_logo.svg.png",
                 teamGroupName = null
             ),
-            team2 = Team(
+            team2 = OLTeam(
                 teamId = 123,
                 shortName = "Hoffenheim",
                 teamName = "TSG 1899 Hoffenheim",
                 teamIconUrl = "https://upload.wikimedia.org/wikipedia/commons/6/64/TSG_Logo-Standard_4c.png",
                 teamGroupName = null
             ),
-            lastUpdateDateTime = Date(1593278560530),
+            lastUpdateDateTime = LocalDateTime.ofInstant(
+                    Instant.ofEpochMilli(1593278560530L), ZoneId.of("WET")),
             matchIsFinished = true,
             matchResults = listOf(
-                MatchResult(
+                OLMatchResult(
                     resultID = 91963,
                     resultName = "Endergebnis",
                     resultDescription = "Ergebnis nach Ende der offiziellen Spielzeit",
@@ -170,7 +177,7 @@ class MatchDayRestControllerIntTest {
                     resultOrderID = 2,
                     resultTypeID = 2
                 ),
-                MatchResult(
+                OLMatchResult(
                     resultID = 91964,
                     resultName = "Halbzeit",
                     resultDescription = "Zwischenstand zur Halbzeit",
@@ -181,7 +188,7 @@ class MatchDayRestControllerIntTest {
                 )
             ),
             goals = listOf(
-                Goal(
+                OLGoal(
                     goalID = 84278,
                     scoreTeam1 = 0,
                     scoreTeam2 = 1,
@@ -193,7 +200,7 @@ class MatchDayRestControllerIntTest {
                     isOvertime = false,
                     comment = null
                 ),
-                Goal(
+                OLGoal(
                     goalID = 84293,
                     scoreTeam1 = 0,
                     scoreTeam2 = 2,
@@ -205,7 +212,7 @@ class MatchDayRestControllerIntTest {
                     isOvertime = false,
                     comment = null
                 ),
-                Goal(
+                OLGoal(
                     goalID = 84298,
                     scoreTeam1 = 0,
                     scoreTeam2 = 3,
@@ -217,7 +224,7 @@ class MatchDayRestControllerIntTest {
                     isOvertime = false,
                     comment = null
                 ),
-                Goal(
+                OLGoal(
                     goalID = 84299,
                     scoreTeam1 = 0,
                     scoreTeam2 = 4,
@@ -237,7 +244,155 @@ class MatchDayRestControllerIntTest {
         every { matchDayService.getCurrentMatchDay() } returns listOf(currentMatchDay)
 
         given()
-            .`when`()["/matchday/current"]
+            .`when`()["/matchdays/current"]
+            .then()
+            .statusCode(200)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(JsonMatcher.jsonEqualTo(expectedResponse))
+    }
+
+    @Test
+    fun `GET - the response contains the match day overview of the current season`() {
+        val expectedResponse = """
+            {
+                "current": 1,
+                "matchDays": [
+                    {
+                        "id": 1,
+                        "name": "1. Spieltag",
+                        "firstMatchStartDateTime": "2020-09-19T13:30Z",
+                        "lastMatchStartDateTime": "2020-09-19T13:30Z"
+                    },
+                    {
+                        "id": 2,
+                        "name": "2. Spieltag",
+                        "firstMatchStartDateTime": "2020-09-26T13:30Z",
+                        "lastMatchStartDateTime": "2020-09-26T13:30Z"
+                    },
+                    {
+                        "id": 3,
+                        "name": "3. Spieltag",
+                        "firstMatchStartDateTime": "2020-10-03T13:30Z",
+                        "lastMatchStartDateTime": "2020-10-03T13:30Z"
+                    },
+                    {
+                        "id": 4,
+                        "name": "4. Spieltag",
+                        "firstMatchStartDateTime": "2020-10-17T13:30Z",
+                        "lastMatchStartDateTime": "2020-10-17T13:30Z"
+                    }
+                ]
+            }
+        """
+
+        val matchDayOverview = MatchDayOverview(
+            current = 1L,
+            matchDays = listOf(
+                de.novatec.betting.game.matchday.model.MatchDay(
+                    id = 1,
+                    name = "1. Spieltag",
+                    firstMatchStartDateTime = ZonedDateTime.parse("2020-09-19T13:30Z"),
+                    lastMatchStartDateTime = ZonedDateTime.parse("2020-09-19T13:30Z")
+                ),
+                de.novatec.betting.game.matchday.model.MatchDay(
+                    id = 2,
+                    name = "2. Spieltag",
+                    firstMatchStartDateTime = ZonedDateTime.parse("2020-09-26T13:30Z"),
+                    lastMatchStartDateTime = ZonedDateTime.parse("2020-09-26T13:30Z")
+                ),
+                de.novatec.betting.game.matchday.model.MatchDay(
+                    id = 3,
+                    name = "3. Spieltag",
+                    firstMatchStartDateTime = ZonedDateTime.parse("2020-10-03T13:30Z"),
+                    lastMatchStartDateTime = ZonedDateTime.parse("2020-10-03T13:30Z")
+                ),
+                de.novatec.betting.game.matchday.model.MatchDay(
+                    id = 4,
+                    name = "4. Spieltag",
+                    firstMatchStartDateTime = ZonedDateTime.parse("2020-10-17T13:30Z"),
+                    lastMatchStartDateTime = ZonedDateTime.parse("2020-10-17T13:30Z")
+                )
+            )
+        )
+
+        every { matchDayService.getAllMatchesOfCurrentSeason() } returns matchDayOverview
+
+        given()
+            .`when`()["/matchdays/current-season"]
+            .then()
+            .statusCode(200)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(JsonMatcher.jsonEqualTo(expectedResponse))
+    }
+
+    @Test
+    fun `GET - the response contains the match day overview of a specific season`() {
+        val expectedResponse = """
+            {
+                "current": 0,
+                "matchDays": [
+                    {
+                        "id": 1,
+                        "name": "1. Spieltag",
+                        "firstMatchStartDateTime": "2019-08-16T18:30Z",
+                        "lastMatchStartDateTime": "2019-08-18T16:00Z"
+                    },
+                    {
+                        "id": 2,
+                        "name": "2. Spieltag",
+                        "firstMatchStartDateTime": "2019-08-23T18:30Z",
+                        "lastMatchStartDateTime": "2019-08-25T16:00Z"
+                    },
+                    {
+                        "id": 3,
+                        "name": "3. Spieltag",
+                        "firstMatchStartDateTime": "2019-08-30T18:30Z",
+                        "lastMatchStartDateTime": "2019-09-01T16:00Z"
+                    },
+                    {
+                        "id": 4,
+                        "name": "4. Spieltag",
+                        "firstMatchStartDateTime": "2019-09-13T18:30Z",
+                        "lastMatchStartDateTime": "2019-09-15T16:00Z"
+                    }
+                ]
+            }
+        """
+
+        val matchDayOverview = MatchDayOverview(
+            current = 0L,
+            matchDays = listOf(
+                de.novatec.betting.game.matchday.model.MatchDay(
+                    id = 1,
+                    name = "1. Spieltag",
+                    firstMatchStartDateTime = ZonedDateTime.parse("2019-08-16T18:30Z"),
+                    lastMatchStartDateTime = ZonedDateTime.parse("2019-08-18T16:00Z")
+                ),
+                de.novatec.betting.game.matchday.model.MatchDay(
+                    id = 2,
+                    name = "2. Spieltag",
+                    firstMatchStartDateTime = ZonedDateTime.parse("2019-08-23T18:30Z"),
+                    lastMatchStartDateTime = ZonedDateTime.parse("2019-08-25T16:00Z")
+                ),
+                de.novatec.betting.game.matchday.model.MatchDay(
+                    id = 3,
+                    name = "3. Spieltag",
+                    firstMatchStartDateTime = ZonedDateTime.parse("2019-08-30T18:30Z"),
+                    lastMatchStartDateTime = ZonedDateTime.parse("2019-09-01T16:00Z")
+                ),
+                de.novatec.betting.game.matchday.model.MatchDay(
+                    id = 4,
+                    name = "4. Spieltag",
+                    firstMatchStartDateTime = ZonedDateTime.parse("2019-09-13T18:30Z"),
+                    lastMatchStartDateTime = ZonedDateTime.parse("2019-09-15T16:00Z")
+                )
+            )
+        )
+
+        every { matchDayService.getAllMatchesOfSeason("2019") } returns matchDayOverview
+
+        given()
+            .`when`()["/matchdays/2019"]
             .then()
             .statusCode(200)
             .contentType(MediaType.APPLICATION_JSON)

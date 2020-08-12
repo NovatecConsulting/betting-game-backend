@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class MatchResult(
+data class OLMatchResult(
     @JsonProperty("ResultID")
     val resultID: Long,
     @JsonProperty("ResultName")
