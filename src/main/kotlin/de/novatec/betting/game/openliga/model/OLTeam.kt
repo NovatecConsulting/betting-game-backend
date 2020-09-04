@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class Team(
+data class OLTeam(
     @JsonProperty("TeamId")
-    val teamId: Long?,
+    val teamId: Long? = null,
     @JsonProperty("TeamName")
     val teamName: String,
     @JsonProperty("ShortName")
-    val shortName: String?,
+    val shortName: String? = null,
     @JsonProperty("TeamIconUrl")
-    val teamIconUrl: String?,
+    val teamIconUrl: String? = null,
     @JsonProperty("TeamGroupName")
-    val teamGroupName: String?
+    val teamGroupName: String? = null
 )

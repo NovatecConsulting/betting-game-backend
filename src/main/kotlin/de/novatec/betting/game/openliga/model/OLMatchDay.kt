@@ -2,14 +2,18 @@ package de.novatec.betting.game.openliga.model
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
-import java.util.*
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer
+import java.time.LocalDateTime
+import java.time.ZonedDateTime
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class MatchDay(
+data class OLMatchDay(
     @JsonProperty("MatchID")
     val matchID: Long,
     @JsonProperty("MatchDateTime")
-    val matchDateTime: Date? = null,
+    @JsonSerialize(using = ToStringSerializer::class)
+    val matchDateTime: LocalDateTime? = null,
     @JsonProperty("TimeZoneID")
     val timeZoneID: String? = null,
     @JsonProperty("LeagueId")
@@ -17,23 +21,25 @@ data class MatchDay(
     @JsonProperty("LeagueName")
     val leagueName: String? = null,
     @JsonProperty("MatchDateTimeUTC")
-    val matchDateTimeUTC: Date,
+    @JsonSerialize(using = ToStringSerializer::class)
+    val matchDateTimeUTC: ZonedDateTime,
     @JsonProperty("Group")
-    val group: Group? = null,
+    val group: OLGroup? = null,
     @JsonProperty("Team1")
-    val team1: Team,
+    val team1: OLTeam,
     @JsonProperty("Team2")
-    val team2: Team,
+    val team2: OLTeam,
     @JsonProperty("LastUpdateDateTime")
-    val lastUpdateDateTime: Date? = null,
+    @JsonSerialize(using = ToStringSerializer::class)
+    val lastUpdateDateTime: LocalDateTime? = null,
     @JsonProperty("MatchIsFinished")
     val matchIsFinished: Boolean,
     @JsonProperty("MatchResults")
-    val matchResults: List<MatchResult>,
+    val matchResults: List<OLMatchResult>,
     @JsonProperty("Goals")
-    val goals: List<Goal>? = null,
+    val goals: List<OLGoal>? = null,
     @JsonProperty("Location")
-    val location: String? = null,
+    val location: OLLocation? = null,
     @JsonProperty("NumberOfViewers")
     val numberOfViewers: Long? = null
 )
