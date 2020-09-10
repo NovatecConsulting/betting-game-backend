@@ -1,5 +1,6 @@
 package de.novatec.betting.game.matchday
 
+import MatchDayTf
 import de.novatec.betting.game.matchday.model.MatchDayOverview
 import de.novatec.betting.game.matchday.tf.MatchDayOverviewTf
 import de.novatec.betting.game.openliga.OpenLigaAccessor
@@ -13,17 +14,19 @@ import utils.classification.UnitTest
 
 val openLigaAccessor: OpenLigaAccessor = mockk()
 val matchDayOverviewTf: MatchDayOverviewTf = mockk()
+val matchDayTf: MatchDayTf = mockk()
+
 
 @UnitTest
 class MatchDayServiceUnitTest {
 
-    private val cut = MatchDayService(openLigaAccessor, matchDayOverviewTf)
+    private val cut = MatchDayService(openLigaAccessor, matchDayOverviewTf, matchDayTf)
 
     @Test
     fun `uses the openliga accessor`() {
-        every { openLigaAccessor.getCurrentMatchDay() } returns listOf(mockkClass(OLMatchDay::class))
-        cut.getCurrentMatchDay()
-        verify { openLigaAccessor.getCurrentMatchDay() }
+        every { openLigaAccessor.getCurrentOLMatchDay() } returns listOf(mockkClass(OLMatchDay::class))
+        cut.getCurrentOLMatchDay()
+        verify { openLigaAccessor.getCurrentOLMatchDay() }
     }
 
     @Test
@@ -34,7 +37,7 @@ class MatchDayServiceUnitTest {
         val currentMatchDayOfCurrentSeason = listOf(firstMatchOfCurrentMatchDay)
 
         every { openLigaAccessor.getAllMatchesOfSeason("2019") } returns allMatchesOfSpecifiedSeason
-        every { openLigaAccessor.getCurrentMatchDay() } returns currentMatchDayOfCurrentSeason
+        every { openLigaAccessor.getCurrentOLMatchDay() } returns currentMatchDayOfCurrentSeason
         every { firstMatchOfCurrentMatchDay.leagueName } returns "1. Fußball-Bundesliga 2020/2021"
         every { firstMatchOfSpecifiedSeason.leagueName } returns "1. Fußball-Bundesliga 2019/2020"
         every { firstMatchOfCurrentMatchDay.group?.groupOrderID } returns 17L
@@ -42,7 +45,7 @@ class MatchDayServiceUnitTest {
             MatchDayOverview::class
         )
 
-        cut.getAllMatchesOfSeason("2019")
+        cut.getAllOLMatchesOfSeason("2019")
 
         verify { matchDayOverviewTf.matchDaysToMatchDayOverview(allMatchesOfSpecifiedSeason) }
     }
@@ -55,7 +58,7 @@ class MatchDayServiceUnitTest {
         val currentMatchDayOfCurrentSeason = listOf(firstMatchOfCurrentMatchDay)
 
         every { openLigaAccessor.getAllMatchesOfSeason("2019") } returns allMatchesOfSpecifiedSeason
-        every { openLigaAccessor.getCurrentMatchDay() } returns currentMatchDayOfCurrentSeason
+        every { openLigaAccessor.getCurrentOLMatchDay() } returns currentMatchDayOfCurrentSeason
         every { firstMatchOfCurrentMatchDay.leagueName } returns "1. Fußball-Bundesliga 2019/2020"
         every { firstMatchOfSpecifiedSeason.leagueName } returns "1. Fußball-Bundesliga 2019/2020"
         every { firstMatchOfCurrentMatchDay.group?.groupOrderID } returns 17L
@@ -66,7 +69,7 @@ class MatchDayServiceUnitTest {
             )
         } returns mockkClass(MatchDayOverview::class)
 
-        cut.getAllMatchesOfSeason("2019")
+        cut.getAllOLMatchesOfSeason("2019")
 
         verify { matchDayOverviewTf.matchDaysToMatchDayOverview(allMatchesOfSpecifiedSeason, 17L) }
     }

@@ -241,7 +241,7 @@ class MatchDayRestControllerIntTest {
             numberOfViewers = null
         )
 
-        every { matchDayService.getCurrentMatchDay() } returns listOf(currentMatchDay)
+        every { matchDayService.getCurrentOLMatchDay() } returns listOf(currentMatchDay)
 
         given()
             .`when`()["/matchdays/current"]
@@ -292,30 +292,34 @@ class MatchDayRestControllerIntTest {
                     id = 1,
                     name = "1. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2020-09-19T13:30Z"),
-                    lastMatchStartDateTime = ZonedDateTime.parse("2020-09-19T13:30Z")
+                    lastMatchStartDateTime = ZonedDateTime.parse("2020-09-19T13:30Z"),
+                    matches = null
                 ),
                 de.novatec.betting.game.matchday.model.MatchDay(
                     id = 2,
                     name = "2. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2020-09-26T13:30Z"),
-                    lastMatchStartDateTime = ZonedDateTime.parse("2020-09-26T13:30Z")
+                    lastMatchStartDateTime = ZonedDateTime.parse("2020-09-26T13:30Z"),
+                    matches = null
                 ),
                 de.novatec.betting.game.matchday.model.MatchDay(
                     id = 3,
                     name = "3. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2020-10-03T13:30Z"),
-                    lastMatchStartDateTime = ZonedDateTime.parse("2020-10-03T13:30Z")
+                    lastMatchStartDateTime = ZonedDateTime.parse("2020-10-03T13:30Z"),
+                    matches = null
                 ),
                 de.novatec.betting.game.matchday.model.MatchDay(
                     id = 4,
                     name = "4. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2020-10-17T13:30Z"),
-                    lastMatchStartDateTime = ZonedDateTime.parse("2020-10-17T13:30Z")
+                    lastMatchStartDateTime = ZonedDateTime.parse("2020-10-17T13:30Z"),
+                    matches = null
                 )
             )
         )
 
-        every { matchDayService.getAllMatchesOfCurrentSeason() } returns matchDayOverview
+        every { matchDayService.getAllOLMatchesOfCurrentSeason() } returns matchDayOverview
 
         given()
             .`when`()["/matchdays/current-season"]
@@ -366,30 +370,34 @@ class MatchDayRestControllerIntTest {
                     id = 1,
                     name = "1. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-08-16T18:30Z"),
-                    lastMatchStartDateTime = ZonedDateTime.parse("2019-08-18T16:00Z")
+                    lastMatchStartDateTime = ZonedDateTime.parse("2019-08-18T16:00Z"),
+                    matches = null
                 ),
                 de.novatec.betting.game.matchday.model.MatchDay(
                     id = 2,
                     name = "2. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-08-23T18:30Z"),
-                    lastMatchStartDateTime = ZonedDateTime.parse("2019-08-25T16:00Z")
+                    lastMatchStartDateTime = ZonedDateTime.parse("2019-08-25T16:00Z"),
+                     matches = null
                 ),
                 de.novatec.betting.game.matchday.model.MatchDay(
                     id = 3,
                     name = "3. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-08-30T18:30Z"),
-                    lastMatchStartDateTime = ZonedDateTime.parse("2019-09-01T16:00Z")
+                    lastMatchStartDateTime = ZonedDateTime.parse("2019-09-01T16:00Z"),
+                    matches = null
                 ),
                 de.novatec.betting.game.matchday.model.MatchDay(
                     id = 4,
                     name = "4. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-09-13T18:30Z"),
-                    lastMatchStartDateTime = ZonedDateTime.parse("2019-09-15T16:00Z")
+                    lastMatchStartDateTime = ZonedDateTime.parse("2019-09-15T16:00Z"),
+                    matches = null
                 )
             )
         )
 
-        every { matchDayService.getAllMatchesOfSeason("2019") } returns matchDayOverview
+        every { matchDayService.getAllOLMatchesOfSeason("2019") } returns matchDayOverview
 
         given()
             .`when`()["/matchdays/2019"]

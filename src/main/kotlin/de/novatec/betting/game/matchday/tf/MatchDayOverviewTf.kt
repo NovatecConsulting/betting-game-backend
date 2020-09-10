@@ -42,7 +42,8 @@ class MatchDayOverviewTf {
                     id = v.first().group?.groupOrderID,
                     name = v.first().group?.groupName,
                     firstMatchStartDateTime = v.first().matchDateTimeUTC,
-                    lastMatchStartDateTime = v.last().matchDateTimeUTC
+                    lastMatchStartDateTime = v.last().matchDateTimeUTC,
+                    matches = null
                 )
             )
         }

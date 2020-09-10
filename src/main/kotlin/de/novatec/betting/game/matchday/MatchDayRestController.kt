@@ -15,22 +15,34 @@ class MatchDayRestController(
     private val matchDayService: MatchDayService
 ) {
 
-    /** Gets the [List] of [OLMatchDay]s containing all pairings of the current Bundesliga match day. */
+    /** Gets the [List] of MatchDays containing all pairings of the current Bundesliga match day. */
     @GET
     @Path("/current")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getCurrentMatchDay(): Response = ok(matchDayService.getCurrentMatchDay()).build()
+    fun getCurrentMatchDay(): Response {
+
+        return ok(matchDayService.getCurrentMatchDay()).build()
+    }
+
+    @GET
+    @Path("/{year}/{matchday}")
+    @Produces(MediaType.APPLICATION_JSON)
+    fun getSpecificMatchDay(@PathParam year: String, @PathParam matchday: String): Response {
+
+        return ok(matchDayService.getSpecificMatchDayOfSeason(year, matchday)).build()
+        //return ok("$year/$matchday").build()
+    }
 
     /** Gets the [List] of [OLMatchDay]s containing all pairings of the current Bundesliga season. */
     @GET
     @Path("/current-season")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getAllMatchesOfCurrentSeason(): Response = ok(matchDayService.getAllMatchesOfCurrentSeason()).build()
+    fun getAllMatchesOfCurrentSeason(): Response = ok(matchDayService.getAllOLMatchesOfCurrentSeason()).build()
 
     /** Gets the [List] of [OLMatchDay]s containing all pairings of a specific Bundesliga season. */
     @GET
     @Path("/{season}")
     @Produces(MediaType.APPLICATION_JSON)
     fun getAllMatchesOfSeason(@PathParam season: String): Response =
-        ok(matchDayService.getAllMatchesOfSeason(season)).build()
+        ok(matchDayService.getAllOLMatchesOfSeason(season)).build()
 }
