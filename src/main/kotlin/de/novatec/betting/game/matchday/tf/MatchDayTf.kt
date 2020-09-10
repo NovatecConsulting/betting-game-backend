@@ -4,12 +4,18 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import javax.inject.Singleton
 
-
+/** Transformer class used to generate the [MatchDayOverview] including respective [Match]es. */
 @Singleton
 class MatchDayTf {
 
     /**
+     * Transforms a [List] of all [OLMatchDay]s of a season to a [MatchDayOverview] including respective [Match]es.
      *
+     * @param firstMatch First match date of the season
+     * @param lastMatch Last match date of the season
+     * @param matchDayList [List] of [OLMatchDay]s
+     *
+     * @return The [MatchDay] for the given [OLMatchDay]s including respective [Match]es.
      */
     fun oLMatchDaysToMatchDayOverview(firstMatch: LocalDateTime, lastMatch: LocalDateTime, matchDayList: List<OLMatchDay>): MatchDay {
 
@@ -29,7 +35,11 @@ class MatchDayTf {
     }
 
     /**
+     * Transforms a [OLMatchDay] Match into a [Match]
      *
+     * @param matchDay [OLMatchDay]
+     *
+     * @return The [Match] for the given [OLMatchDay].
      */
     private fun oLMatchDayToMatchDay(matchDay: OLMatchDay): Match {
 

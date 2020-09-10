@@ -57,15 +57,33 @@ class MatchDayService(
         }
     }
 
-    fun getSpecificMatchDayOfSeason(season: String, matchDay: String): List<OLMatchDay> {
-        val matchDays: List<OLMatchDay> = openLigaAccessor.getAllMatchesOfSeason(season)
-        return matchDays
+    /**
+     * Gets all MatchDays of a specific season.
+     *
+     * @param season The name of the season, e.g. "2019"
+     * @param matchDay The name of the matchday, e.g. "7"
+     *
+     * @return [MatchDay]s of the specific season
+     */
+    fun getSpecificMatchDayOfSeason(season: String, matchDay: String): MatchDay? {
 
+        val matchDays: List<OLMatchDay> = openLigaAccessor.getAllMatchesOfSeason(season)
+        val specificMatchDays = matchDays.filter { it.group?.groupOrderID == matchDay.toLong() }
+        val firstMatchDate = firstMatchStartDate(specificMatchDays)
+        val lastMatchDate = lastMatchStartDate(specificMatchDays)
+
+        return if (firstMatchDate != null && lastMatchDate != null) {
+            matchDayTf.oLMatchDaysToMatchDayOverview(firstMatchDate, lastMatchDate, specificMatchDays)
+        } else {
+            null
+        }
     }
 
 
     /**
+     * Gets all [MatchDay]s of the current season.
      *
+     * @return [MatchDay]s of the current season
      */
     fun getCurrentMatchDay(): MatchDay? {
 
@@ -82,7 +100,11 @@ class MatchDayService(
     }
 
     /**
+     * Calculates the first match date of a given [OLMatchDay] list
      *
+     * @param matchDays A list of [OLMatchDay]s
+     *
+     * @return first [MatchDay] date
      */
     private fun firstMatchStartDate(matchDays: List<OLMatchDay>): LocalDateTime? {
         matchDays.sortedWith(compareBy {it.matchDateTime})
@@ -90,7 +112,11 @@ class MatchDayService(
     }
 
     /**
+     * Calculates the last match date of a given [OLMatchDay] list
      *
+     * @param matchDays A list of [OLMatchDay]s
+     *
+     * @return Last [MatchDay] date
      */
     private fun lastMatchStartDate(matchDays: List<OLMatchDay>): LocalDateTime? {
         matchDays.sortedWith(compareBy {it.matchDateTime})

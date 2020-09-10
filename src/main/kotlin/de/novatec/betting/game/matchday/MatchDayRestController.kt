@@ -19,19 +19,14 @@ class MatchDayRestController(
     @GET
     @Path("/current")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getCurrentMatchDay(): Response {
+    fun getCurrentMatchDay(): Response  = ok(matchDayService.getCurrentMatchDay()).build()
 
-        return ok(matchDayService.getCurrentMatchDay()).build()
-    }
-
+    /** Gets the [List] of specific MatchDays containing all pairings of the current Bundeyliga match day. */
     @GET
     @Path("/{year}/{matchday}")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getSpecificMatchDay(@PathParam year: String, @PathParam matchday: String): Response {
-
-        return ok(matchDayService.getSpecificMatchDayOfSeason(year, matchday)).build()
-        //return ok("$year/$matchday").build()
-    }
+    fun getSpecificMatchDay(@PathParam year: String, @PathParam matchday: String): Response =
+        ok(matchDayService.getSpecificMatchDayOfSeason(year, matchday)).build()
 
     /** Gets the [List] of [OLMatchDay]s containing all pairings of the current Bundesliga season. */
     @GET
