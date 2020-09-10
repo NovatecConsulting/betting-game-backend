@@ -12,7 +12,7 @@ data class MatchDayOverview(
     val matchDays: List<MatchDay>?
 )
 
-data class MatchDay (
+data class MatchDay(
 
     val id: Long?,
 

@@ -4,12 +4,12 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import javax.inject.Singleton
 
-/** Transformer class used to generate the [MatchDayOverview] including respective [Match]es. */
+/** Transformer class used to generate the [MatchDay] including respective [Match]es. */
 @Singleton
 class MatchDayTf {
 
     /**
-     * Transforms a [List] of all [OLMatchDay]s of a season to a [MatchDayOverview] including respective [Match]es.
+     * Transforms a [List] of all [OLMatchDay]s of a season to a [MatchDay] including respective [Match]es.
      *
      * @param firstMatch First match date of the season
      * @param lastMatch Last match date of the season
