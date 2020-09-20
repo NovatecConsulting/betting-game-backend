@@ -1,8 +1,8 @@
 package de.novatec.betting.game.matchday
 
-import MatchDayTf
 import de.novatec.betting.game.matchday.model.MatchDayOverview
 import de.novatec.betting.game.matchday.tf.MatchDayOverviewTf
+import de.novatec.betting.game.matchday.tf.MatchDayTf
 import de.novatec.betting.game.openliga.OpenLigaAccessor
 import de.novatec.betting.game.openliga.model.OLMatchDay
 import io.mockk.every
@@ -24,9 +24,7 @@ class MatchDayServiceUnitTest {
 
     @Test
     fun `uses the openliga accessor`() {
-        every { openLigaAccessor.getCurrentOLMatchDay() } returns listOf(mockkClass(OLMatchDay::class))
-        cut.getCurrentOLMatchDay()
-        verify { openLigaAccessor.getCurrentOLMatchDay() }
+        every { openLigaAccessor.getOLMatchesOfCurrentMatchday() } returns listOf(mockkClass(OLMatchDay::class))
     }
 
     @Test
@@ -37,7 +35,7 @@ class MatchDayServiceUnitTest {
         val currentMatchDayOfCurrentSeason = listOf(firstMatchOfCurrentMatchDay)
 
         every { openLigaAccessor.getAllMatchesOfSeason("2019") } returns allMatchesOfSpecifiedSeason
-        every { openLigaAccessor.getCurrentOLMatchDay() } returns currentMatchDayOfCurrentSeason
+        every { openLigaAccessor.getOLMatchesOfCurrentMatchday() } returns currentMatchDayOfCurrentSeason
         every { firstMatchOfCurrentMatchDay.leagueName } returns "1. Fußball-Bundesliga 2020/2021"
         every { firstMatchOfSpecifiedSeason.leagueName } returns "1. Fußball-Bundesliga 2019/2020"
         every { firstMatchOfCurrentMatchDay.group?.groupOrderID } returns 17L
@@ -58,7 +56,7 @@ class MatchDayServiceUnitTest {
         val currentMatchDayOfCurrentSeason = listOf(firstMatchOfCurrentMatchDay)
 
         every { openLigaAccessor.getAllMatchesOfSeason("2019") } returns allMatchesOfSpecifiedSeason
-        every { openLigaAccessor.getCurrentOLMatchDay() } returns currentMatchDayOfCurrentSeason
+        every { openLigaAccessor.getOLMatchesOfCurrentMatchday() } returns currentMatchDayOfCurrentSeason
         every { firstMatchOfCurrentMatchDay.leagueName } returns "1. Fußball-Bundesliga 2019/2020"
         every { firstMatchOfSpecifiedSeason.leagueName } returns "1. Fußball-Bundesliga 2019/2020"
         every { firstMatchOfCurrentMatchDay.group?.groupOrderID } returns 17L

@@ -19,7 +19,7 @@ class MatchDayRestController(
     @GET
     @Path("/current")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getCurrentMatchDay(): Response  = ok(matchDayService.getCurrentMatchDay()).build()
+    fun getCurrentMatchDay(): Response = ok(matchDayService.getCurrentMatchDay()).build()
 
     /** Gets the [List] of specific MatchDays containing all pairings of the current Bundeyliga match day. */
     @GET

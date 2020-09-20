@@ -1,6 +1,7 @@
+package de.novatec.betting.game.matchday.tf
+
 import de.novatec.betting.game.matchday.model.*
 import de.novatec.betting.game.openliga.model.OLMatchDay
-import java.time.LocalDateTime
 import java.time.ZoneId
 import javax.inject.Singleton
 
@@ -11,37 +12,39 @@ class MatchDayTf {
     /**
      * Transforms a [List] of all [OLMatchDay]s of a season to a [MatchDay] including respective [Match]es.
      *
-     * @param firstMatch First match date of the season
-     * @param lastMatch Last match date of the season
-     * @param matchDayList [List] of [OLMatchDay]s
+     * @param firstMatchKickoff First match date of the season
+     * @param lastMatchKickoff Last match date of the season
+     * @param oLMatches [List] of [OLMatchDay]s
      *
      * @return The [MatchDay] for the given [OLMatchDay]s including respective [Match]es.
      */
-    fun oLMatchDaysToMatchDayOverview(firstMatch: LocalDateTime, lastMatch: LocalDateTime, matchDayList: List<OLMatchDay>): MatchDay {
-
-        val matchesList = mutableListOf<Match>()
-
-        for (matchDay in matchDayList) {
-            matchesList.add(oLMatchDayToMatchDay(matchDay))
-        }
-
-        return MatchDay(
-            id = matchDayList.first().group?.groupOrderID,
-            name = matchDayList.first().group?.groupName,
-            firstMatchStartDateTime = firstMatch.atZone(ZoneId.of(ZoneId.systemDefault().toString())),
-            lastMatchStartDateTime = lastMatch.atZone(ZoneId.of(ZoneId.systemDefault().toString())),
-            matches = matchesList
+    fun oLMatchesToMatchDayOverview(oLMatches: List<OLMatchDay>) =
+        MatchDay(
+            id = getMatchDayId(oLMatches.first()),
+            name = getMatchDayName(oLMatches.first()),
+            firstMatchStartDateTime = firstMatchStartDateTime(oLMatches),
+            lastMatchStartDateTime = lastMatchStartDateTime(oLMatches),
+            matches = oLMatches.map {
+                oLMatchToMatch(it)
+            }
         )
-    }
+
+    private fun getMatchDayName(matchDay: OLMatchDay) = matchDay.group?.groupName
+
+    private fun getMatchDayId(matchDay: OLMatchDay) = matchDay.group?.groupOrderID
+
+    private fun firstMatchStartDateTime(olMatches: List<OLMatchDay>) =
+        olMatches.sortedWith(compareBy { it.matchDateTime })
+            .first().matchDateTime?.atZone(ZoneId.of(ZoneId.systemDefault().toString()))
+
+    private fun lastMatchStartDateTime(olMatches: List<OLMatchDay>) =
+        olMatches.sortedWith(compareBy { it.matchDateTime })
+            .last().matchDateTime?.atZone(ZoneId.of(ZoneId.systemDefault().toString()))
 
     /**
-     * Transforms a [OLMatchDay] Match into a [Match]
-     *
-     * @param matchDay [OLMatchDay]
-     *
-     * @return The [Match] for the given [OLMatchDay].
+     * Transforms a [OLMatchDay] Match into a [Match].
      */
-    private fun oLMatchDayToMatchDay(matchDay: OLMatchDay): Match {
+    private fun oLMatchToMatch(matchDay: OLMatchDay): Match {
 
         val matchResult = if (matchDay.matchResults.isNotEmpty()) {
             Result(
@@ -74,6 +77,7 @@ class MatchDayTf {
             ),
             kickOffDateTime = matchDay.matchDateTime?.atZone(ZoneId.of(ZoneId.systemDefault().toString())),
             matchIsFinished = matchDay.matchIsFinished,
-            result = matchResult)
+            result = matchResult
+        )
     }
 }

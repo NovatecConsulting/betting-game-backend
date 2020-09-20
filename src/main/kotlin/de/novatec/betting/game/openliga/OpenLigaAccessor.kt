@@ -21,7 +21,7 @@ interface OpenLigaAccessor {
     @GET
     @Path("/bl1")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getCurrentOLMatchDay(): List<OLMatchDay>
+    fun getOLMatchesOfCurrentMatchday(): List<OLMatchDay>
 
     @GET
     @Path("/bl1/{season}")

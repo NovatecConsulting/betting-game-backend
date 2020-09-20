@@ -1,14 +1,13 @@
 package de.novatec.betting.game.matchday
 
-import MatchDayTf
 import de.novatec.betting.game.matchday.model.MatchDay
 import de.novatec.betting.game.matchday.model.MatchDayOverview
 import de.novatec.betting.game.matchday.tf.MatchDayOverviewTf
+import de.novatec.betting.game.matchday.tf.MatchDayTf
 import de.novatec.betting.game.openliga.OpenLigaAccessor
 import de.novatec.betting.game.openliga.model.OLMatchDay
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.eclipse.microprofile.rest.client.inject.RestClient
-import java.time.LocalDateTime
 import javax.inject.Singleton
 
 /** Service class that handles all the business actions that require the openliga-backend. */
@@ -22,12 +21,6 @@ class MatchDayService(
     @ConfigProperty(name = "openliga.currentSeason")
     lateinit var currentSeason: String
 
-    /**
-     * Gets the current [OLMatchDay] with all pairings of.
-     *
-     * @return A [List] of [OLMatchDay]s containing all pairings.
-     */
-    fun getCurrentOLMatchDay(): List<OLMatchDay>  = openLigaAccessor.getCurrentOLMatchDay()
 
     /**
      * Gets all [OLMatchDay]s of the current season. The current season is managed in the application properties.
@@ -45,7 +38,7 @@ class MatchDayService(
      */
     fun getAllOLMatchesOfSeason(season: String): MatchDayOverview {
         val matchDays: List<OLMatchDay> = openLigaAccessor.getAllMatchesOfSeason(season)
-        val currentMatchDays: List<OLMatchDay> = getCurrentOLMatchDay()
+        val currentMatchDays: List<OLMatchDay> = openLigaAccessor.getOLMatchesOfCurrentMatchday()
 
         // Check if the season name of the specified and current season is the same.
         return if (currentMatchDays.first().leagueName.equals(matchDays.first().leagueName)) {
@@ -66,17 +59,9 @@ class MatchDayService(
      * @return [MatchDay]s of the specific season
      */
     fun getSpecificMatchDayOfSeason(season: String, matchDay: String): MatchDay? {
-
         val matchDays: List<OLMatchDay> = openLigaAccessor.getAllMatchesOfSeason(season)
         val specificMatchDays = matchDays.filter { it.group?.groupOrderID == matchDay.toLong() }
-        val firstMatchDate = firstMatchStartDate(specificMatchDays)
-        val lastMatchDate = lastMatchStartDate(specificMatchDays)
-
-        return if (firstMatchDate != null && lastMatchDate != null) {
-            matchDayTf.oLMatchDaysToMatchDayOverview(firstMatchDate, lastMatchDate, specificMatchDays)
-        } else {
-            null
-        }
+        return matchDayTf.oLMatchesToMatchDayOverview(specificMatchDays)
     }
 
 
@@ -86,40 +71,7 @@ class MatchDayService(
      * @return [MatchDay]s of the current season
      */
     fun getCurrentMatchDay(): MatchDay? {
-
-        val allOLMatches = getCurrentOLMatchDay()
-        val firstMatchDate = firstMatchStartDate(allOLMatches)
-        val lastMatchDate = lastMatchStartDate(allOLMatches)
-
-        return if (firstMatchDate != null && lastMatchDate != null) {
-            matchDayTf.oLMatchDaysToMatchDayOverview(firstMatchDate, lastMatchDate, allOLMatches)
-        } else {
-            null
-        }
-
-    }
-
-    /**
-     * Calculates the first match date of a given [OLMatchDay] list
-     *
-     * @param matchDays A list of [OLMatchDay]s
-     *
-     * @return first [MatchDay] date
-     */
-    private fun firstMatchStartDate(matchDays: List<OLMatchDay>): LocalDateTime? {
-        matchDays.sortedWith(compareBy {it.matchDateTime})
-        return matchDays.first().matchDateTime
-    }
-
-    /**
-     * Calculates the last match date of a given [OLMatchDay] list
-     *
-     * @param matchDays A list of [OLMatchDay]s
-     *
-     * @return Last [MatchDay] date
-     */
-    private fun lastMatchStartDate(matchDays: List<OLMatchDay>): LocalDateTime? {
-        matchDays.sortedWith(compareBy {it.matchDateTime})
-        return matchDays.last().matchDateTime
+        val allOLMatches = openLigaAccessor.getOLMatchesOfCurrentMatchday()
+        return matchDayTf.oLMatchesToMatchDayOverview(allOLMatches)
     }
 }
