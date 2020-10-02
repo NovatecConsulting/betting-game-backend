@@ -1,6 +1,7 @@
 package de.novatec.betting.game.matchday.tf
 
-import de.novatec.betting.game.matchday.model.*
+import de.novatec.betting.game.matchday.model.MatchDay
+import de.novatec.betting.game.matchday.model.MatchDay.*
 import de.novatec.betting.game.openliga.model.OLMatchDay
 import java.time.ZoneId
 import javax.inject.Singleton
@@ -12,8 +13,6 @@ class MatchDayTf {
     /**
      * Transforms a [List] of all [OLMatchDay]s of a season to a [MatchDay] including respective [Match]es.
      *
-     * @param firstMatchKickoff First match date of the season
-     * @param lastMatchKickoff Last match date of the season
      * @param oLMatches [List] of [OLMatchDay]s
      *
      * @return The [MatchDay] for the given [OLMatchDay]s including respective [Match]es.
