@@ -19,7 +19,7 @@ class OpenLigaAccessorIntTest {
 
     @Test
     fun `GET - requests the current match day from the openliga api`() {
-        val result = openLigaAccessor.getCurrentMatchDay()
+        val result = openLigaAccessor.getOLMatchesOfCurrentMatchday()
         assertThat(result.size).isEqualTo(1)
         assertThat(result[0].matchID).isEqualTo(55574L)
     }
