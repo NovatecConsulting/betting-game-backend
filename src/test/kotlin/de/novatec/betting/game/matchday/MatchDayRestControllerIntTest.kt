@@ -1,7 +1,9 @@
 package de.novatec.betting.game.matchday
 
 
-import de.novatec.betting.game.matchday.model.*
+import de.novatec.betting.game.matchday.model.MatchDay
+import de.novatec.betting.game.matchday.model.MatchDay.*
+import de.novatec.betting.game.matchday.model.MatchDayOverview
 import io.mockk.every
 import io.mockk.mockk
 import io.quarkus.test.Mock
@@ -240,28 +242,28 @@ class MatchDayRestControllerIntTest {
         val matchDayOverview = MatchDayOverview(
             current = 1L,
             matchDays = listOf(
-                de.novatec.betting.game.matchday.model.MatchDay(
+                MatchDay(
                     id = 1,
                     name = "1. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2020-09-19T13:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2020-09-19T13:30Z"),
                     matches = null
                 ),
-                de.novatec.betting.game.matchday.model.MatchDay(
+                MatchDay(
                     id = 2,
                     name = "2. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2020-09-26T13:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2020-09-26T13:30Z"),
                     matches = null
                 ),
-                de.novatec.betting.game.matchday.model.MatchDay(
+                MatchDay(
                     id = 3,
                     name = "3. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2020-10-03T13:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2020-10-03T13:30Z"),
                     matches = null
                 ),
-                de.novatec.betting.game.matchday.model.MatchDay(
+                MatchDay(
                     id = 4,
                     name = "4. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2020-10-17T13:30Z"),
@@ -271,7 +273,7 @@ class MatchDayRestControllerIntTest {
             )
         )
 
-        every { matchDayService.getAllOLMatchesOfCurrentSeason() } returns matchDayOverview
+        every { matchDayService.getAllMatchesOfCurrentSeason() } returns matchDayOverview
 
         given()
             .`when`()["/matchdays/current-season"]
@@ -318,28 +320,28 @@ class MatchDayRestControllerIntTest {
         val matchDayOverview = MatchDayOverview(
             current = 0L,
             matchDays = listOf(
-                de.novatec.betting.game.matchday.model.MatchDay(
+                MatchDay(
                     id = 1,
                     name = "1. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-08-16T18:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2019-08-18T16:00Z"),
                     matches = null
                 ),
-                de.novatec.betting.game.matchday.model.MatchDay(
+                MatchDay(
                     id = 2,
                     name = "2. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-08-23T18:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2019-08-25T16:00Z"),
                      matches = null
                 ),
-                de.novatec.betting.game.matchday.model.MatchDay(
+                MatchDay(
                     id = 3,
                     name = "3. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-08-30T18:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2019-09-01T16:00Z"),
                     matches = null
                 ),
-                de.novatec.betting.game.matchday.model.MatchDay(
+                MatchDay(
                     id = 4,
                     name = "4. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-09-13T18:30Z"),
@@ -349,7 +351,7 @@ class MatchDayRestControllerIntTest {
             )
         )
 
-        every { matchDayService.getAllOLMatchesOfSeason("2019") } returns matchDayOverview
+        every { matchDayService.getAllMatchesOfSeason("2019") } returns matchDayOverview
 
         given()
             .`when`()["/matchdays/2019"]

@@ -43,7 +43,7 @@ class MatchDayServiceUnitTest {
             MatchDayOverview::class
         )
 
-        cut.getAllOLMatchesOfSeason("2019")
+        cut.getAllMatchesOfSeason("2019")
 
         verify { matchDayOverviewTf.matchDaysToMatchDayOverview(allMatchesOfSpecifiedSeason) }
     }
@@ -67,7 +67,7 @@ class MatchDayServiceUnitTest {
             )
         } returns mockkClass(MatchDayOverview::class)
 
-        cut.getAllOLMatchesOfSeason("2019")
+        cut.getAllMatchesOfSeason("2019")
 
         verify { matchDayOverviewTf.matchDaysToMatchDayOverview(allMatchesOfSpecifiedSeason, 17L) }
     }
