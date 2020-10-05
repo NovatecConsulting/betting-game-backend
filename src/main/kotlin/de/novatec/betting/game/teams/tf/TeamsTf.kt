@@ -15,5 +15,5 @@ class TeamsTf {
      * @return a [Teams] instance containing [Team]s
      */
     fun olTeamsToTeams(olTeams: List<OLTeam>): Teams =
-        Teams(olTeams.map { Team(it.teamId, it.shortName, it.teamName, it.teamIconUrl) }.toList())
+        Teams(olTeams.map { Team(it.teamId, it.teamName, it.shortName, it.teamIconUrl) }.toList())
 }

@@ -14,14 +14,14 @@ class TeamsTfUnitTest {
     @Test
     fun `map list of teams`() {
         val olTeams: List<OLTeam> =
-            listOf(OLTeam(16, "Vfb Stuttgart", "Vfb Stuttgart"), OLTeam(65, "1. FC Köln", "1. FC Köln", null))
+            listOf(OLTeam(16, "Vfb Stuttgart", "Stuttgart"), OLTeam(65, "1. FC Köln", "FC Köln", null))
         val actual = tf.olTeamsToTeams(olTeams)
         Assertions.assertThat(actual.teams.size)
             .isEqualTo(2)
         Assertions.assertThat(actual.teams)
             .containsExactlyInAnyOrder(
-                Team(16, "Vfb Stuttgart", "Vfb Stuttgart", null),
-                Team(65, "1. FC Köln", "1. FC Köln", null)
+                Team(16, "Vfb Stuttgart", "Stuttgart", null),
+                Team(65, "1. FC Köln", "FC Köln", null)
             )
     }
 
