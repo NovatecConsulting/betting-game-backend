@@ -20,6 +20,8 @@ dependencies {
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 
+    compile group: 'io.quarkus', name: 'quarkus-smallrye-openapi', version: '1.8.1.Final'
+
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:kotlin-extensions'
 

@@ -25,6 +25,11 @@ If you want to build an _über-jar_, just add the `--uber-jar` option to the com
 ./gradlew quarkusBuild --uber-jar
 ```
 
+## Accessing Swagger UI to interact with API's resources
+
+Assuming you are starting your application with port 8080, the Swagger UI
+is accessible through `http://localhost:8080/swagger-ui/`.
+
 ## Creating a native executable
 
 You can create a native executable using: `./gradlew build -Dquarkus.package.type=native`.
