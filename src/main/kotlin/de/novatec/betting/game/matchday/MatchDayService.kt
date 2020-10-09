@@ -18,9 +18,9 @@ class MatchDayService(
     private val matchDayTf: MatchDayTf
 ) {
 
+    /** Config property that stores the current season, e.g. "2020". */
     @ConfigProperty(name = "openliga.currentSeason")
     lateinit var currentSeason: String
-
 
     /**
      * Gets all [OLMatchDay]s of the current season. The current season is managed in the application properties.
@@ -63,7 +63,6 @@ class MatchDayService(
         val specificMatchDays = matchDays.filter { it.group?.groupOrderID == matchDay.toLong() }
         return matchDayTf.oLMatchesToMatchDayOverview(specificMatchDays)
     }
-
 
     /**
      * Gets all [MatchDay]s of the current season.
