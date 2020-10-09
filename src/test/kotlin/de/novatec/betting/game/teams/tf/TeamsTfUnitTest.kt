@@ -15,14 +15,20 @@ class TeamsTfUnitTest {
     fun `map list of teams`() {
         val olTeams: List<OLTeam> =
             listOf(
-                OLTeam(teamId = 16, teamName = "VfB Stuttgart", shortName = "Stuttgart"),
+                OLTeam(
+                    teamId = 16,
+                    teamName = "VfB Stuttgart",
+                    shortName = "Stuttgart",
+                    teamIconUrl = "vfb-logo",
+                    teamGroupName = "nicht-relevant"
+                ),
                 OLTeam(teamId = 65, teamName = "1. FC Köln", shortName = "FC Köln", teamIconUrl = null)
             )
         val actual = tf.olTeamsToTeams(olTeams)
         assertThat(actual.teams.size).isEqualTo(2)
         assertThat(actual.teams).containsExactly(
-            Team(16, "VfB Stuttgart", "Stuttgart", null),
-            Team(65, "1. FC Köln", "FC Köln", null)
+            Team(id = 16, name = "VfB Stuttgart", shortName = "Stuttgart", logo = "vfb-logo"),
+            Team(id = 65, shortName = "FC Köln", name = "1. FC Köln", logo = null)
         )
     }
 
