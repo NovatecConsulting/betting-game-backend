@@ -8,7 +8,7 @@ import de.novatec.betting.game.teams.tf.TeamsTf
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkClass
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import utils.classification.UnitTest
 
@@ -30,8 +30,7 @@ class TeamsServiceUnitTest {
         every { teamsTf.olTeamsToTeams(olTeams) } returns teams
         every { teams.teams } returns listOf(mockkClass(Team::class), mockkClass(Team::class))
         val actual = service.getTeams("2020")
-        Assertions.assertThat(actual.teams.size)
-            .isEqualTo(2)
+        assertThat(actual.teams.size).isEqualTo(2)
     }
 
 }

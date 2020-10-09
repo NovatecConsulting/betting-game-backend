@@ -18,8 +18,8 @@ class TeamsRestController(private val teamsService: TeamsService) {
     /** Gets a [List] of all [Team]s for the specified Bundesliga season
      */
     @GET
-    @Path("/{year}")
+    @Path("/{season}")
     @Produces(APPLICATION_JSON)
-    fun getTeams(@PathParam year: String): Response = Response.ok(teamsService.getTeams(year)).build()
+    fun getTeams(@PathParam season: String): Response = Response.ok(teamsService.getTeams(season)).build()
 
 }

@@ -29,7 +29,7 @@ class TeamsRestControllerTest {
                 "teams" : [
                     { 
                         "id": 16,
-                        "name": "Vfb Stuttgart",
+                        "name": "VfB Stuttgart",
                         "shortName": "Stuttgart",
                         "logo": "logo-vfb"
                     }, 
@@ -45,7 +45,7 @@ class TeamsRestControllerTest {
 
         every { teamsService.getTeams("2020") } returns Teams(
             listOf(
-                Team(16, "Vfb Stuttgart", "Stuttgart", "logo-vfb"),
+                Team(16, "VfB Stuttgart", "Stuttgart", "logo-vfb"),
                 Team(65, "1. FC Köln", "FC Köln", "logo-köln")
             )
         )
