@@ -1,7 +1,7 @@
 package de.novatec.betting.game.teams.tf
 
+import de.novatec.betting.game.model.Team
 import de.novatec.betting.game.openliga.model.OLTeam
-import de.novatec.betting.game.teams.model.Team
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import utils.classification.UnitTest

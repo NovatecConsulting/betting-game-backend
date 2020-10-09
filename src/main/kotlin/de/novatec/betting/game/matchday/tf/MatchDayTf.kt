@@ -1,7 +1,7 @@
 package de.novatec.betting.game.matchday.tf
 
-import de.novatec.betting.game.matchday.model.MatchDay
-import de.novatec.betting.game.matchday.model.MatchDay.*
+import de.novatec.betting.game.model.MatchDay
+import de.novatec.betting.game.model.MatchDay.*
 import de.novatec.betting.game.openliga.model.OLMatchDay
 import java.time.ZoneId
 import javax.inject.Singleton

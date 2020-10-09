@@ -1,9 +1,9 @@
 package de.novatec.betting.game.matchday
 
-import de.novatec.betting.game.matchday.model.MatchDay
-import de.novatec.betting.game.matchday.model.MatchDayOverview
 import de.novatec.betting.game.matchday.tf.MatchDayOverviewTf
 import de.novatec.betting.game.matchday.tf.MatchDayTf
+import de.novatec.betting.game.model.MatchDay
+import de.novatec.betting.game.model.MatchDayOverview
 import de.novatec.betting.game.openliga.OpenLigaAccessor
 import de.novatec.betting.game.openliga.model.OLMatchDay
 import org.eclipse.microprofile.config.inject.ConfigProperty

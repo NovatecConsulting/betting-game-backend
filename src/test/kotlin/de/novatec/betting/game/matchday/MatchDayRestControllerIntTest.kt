@@ -1,9 +1,9 @@
 package de.novatec.betting.game.matchday
 
 
-import de.novatec.betting.game.matchday.model.MatchDay
-import de.novatec.betting.game.matchday.model.MatchDay.*
-import de.novatec.betting.game.matchday.model.MatchDayOverview
+import de.novatec.betting.game.model.MatchDay
+import de.novatec.betting.game.model.MatchDay.*
+import de.novatec.betting.game.model.MatchDayOverview
 import io.mockk.every
 import io.mockk.mockk
 import io.quarkus.test.Mock

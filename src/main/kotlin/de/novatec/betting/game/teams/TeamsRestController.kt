@@ -1,6 +1,6 @@
 package de.novatec.betting.game.teams
 
-import de.novatec.betting.game.teams.model.Team
+import de.novatec.betting.game.model.Team
 import org.jboss.resteasy.annotations.jaxrs.PathParam
 import javax.ws.rs.GET
 import javax.ws.rs.Path
