@@ -4,6 +4,7 @@ import de.novatec.betting.game.model.Team
 import de.novatec.betting.game.model.Teams
 import de.novatec.betting.game.openliga.OpenLigaAccessor
 import de.novatec.betting.game.teams.tf.TeamsTf
+import io.quarkus.cache.CacheResult
 import org.eclipse.microprofile.rest.client.inject.RestClient
 import javax.inject.Singleton
 
@@ -17,6 +18,7 @@ class TeamsService(@RestClient private val openLigaAccessor: OpenLigaAccessor, p
      * @param season The name of the season, e.g. "2020"
      * @return All [Teams] of the specified season
      */
+    @CacheResult(cacheName = "teams-cache")
     fun getTeams(season: String): Teams {
         val olTeams = openLigaAccessor.getAllTeams(season)
         return teamsTf.olTeamsToTeams(olTeams)
