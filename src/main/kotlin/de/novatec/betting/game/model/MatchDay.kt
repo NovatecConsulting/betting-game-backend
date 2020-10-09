@@ -1,4 +1,4 @@
-package de.novatec.betting.game.matchday.model
+package de.novatec.betting.game.model
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
@@ -18,26 +18,12 @@ data class MatchDay(
 
     data class Match(
         val id: Long?,
-        val home: Home?,
-        val guest: Guest?,
+        val home: Team?,
+        val guest: Team?,
         @JsonSerialize(using = ToStringSerializer::class)
         val kickOffDateTime: ZonedDateTime?,
         val matchIsFinished: Boolean?,
         val result: Result?
-    )
-
-    data class Home(
-        val id: Long?,
-        val name: String?,
-        val shortName: String?,
-        val logo: String?
-    )
-
-    data class Guest(
-        val id: Long?,
-        val name: String?,
-        val shortName: String?,
-        val logo: String?
     )
 
     data class Result(

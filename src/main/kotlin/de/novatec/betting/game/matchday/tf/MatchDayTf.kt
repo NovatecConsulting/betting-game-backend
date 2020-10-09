@@ -1,7 +1,8 @@
 package de.novatec.betting.game.matchday.tf
 
-import de.novatec.betting.game.matchday.model.MatchDay
-import de.novatec.betting.game.matchday.model.MatchDay.*
+import de.novatec.betting.game.model.MatchDay
+import de.novatec.betting.game.model.MatchDay.*
+import de.novatec.betting.game.model.Team
 import de.novatec.betting.game.openliga.model.OLMatchDay
 import java.time.ZoneId
 import javax.inject.Singleton
@@ -62,13 +63,13 @@ class MatchDayTf {
 
         return Match(
             id = matchDay.matchID,
-            home = Home(
+            home = Team(
                 id = matchDay.team1.teamId,
                 name = matchDay.team1.teamName,
                 shortName = matchDay.team1.shortName,
                 logo = matchDay.team1.teamIconUrl
             ),
-            guest = Guest(
+            guest = Team(
                 id = matchDay.team2.teamId,
                 name = matchDay.team2.teamName,
                 shortName = matchDay.team2.shortName,

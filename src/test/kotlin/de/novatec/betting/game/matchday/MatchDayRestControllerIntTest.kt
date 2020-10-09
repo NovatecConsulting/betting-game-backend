@@ -1,9 +1,10 @@
 package de.novatec.betting.game.matchday
 
 
-import de.novatec.betting.game.matchday.model.MatchDay
-import de.novatec.betting.game.matchday.model.MatchDay.*
-import de.novatec.betting.game.matchday.model.MatchDayOverview
+import de.novatec.betting.game.model.MatchDay
+import de.novatec.betting.game.model.MatchDay.*
+import de.novatec.betting.game.model.MatchDayOverview
+import de.novatec.betting.game.model.Team
 import io.mockk.every
 import io.mockk.mockk
 import io.quarkus.test.Mock
@@ -69,13 +70,13 @@ class MatchDayRestControllerIntTest {
         val matchesList = mutableListOf<Match>()
         val match = Match(
             id = 58577,
-            home = Home(
+            home = Team(
                 id = 40,
                 name = "FC Bayern",
                 shortName = "FC Bayern",
                 logo = "logo"
             ),
-            guest = Guest(
+            guest = Team(
                 id = 9,
                 name = "FC Schalke 04",
                 shortName = "Schalke 04",
@@ -98,11 +99,11 @@ class MatchDayRestControllerIntTest {
         matchesList.add(match)
 
         val currentMatchDay = MatchDay(
-                id = 1,
-                name = "1. Spieltag",
-                firstMatchStartDateTime = ZonedDateTime.parse("2020-09-18T20:30+02:00[Europe/Berlin]"),
-                lastMatchStartDateTime =  ZonedDateTime.parse("2020-09-20T18:00+02:00[Europe/Berlin]"),
-                matches = matchesList
+            id = 1,
+            name = "1. Spieltag",
+            firstMatchStartDateTime = ZonedDateTime.parse("2020-09-18T20:30+02:00[Europe/Berlin]"),
+            lastMatchStartDateTime = ZonedDateTime.parse("2020-09-20T18:00+02:00[Europe/Berlin]"),
+            matches = matchesList
         )
 
         every { matchDayService.getCurrentMatchDay() } returns currentMatchDay
@@ -159,13 +160,13 @@ class MatchDayRestControllerIntTest {
         val matchesList = mutableListOf<Match>()
         val match = Match(
             id = 58577,
-            home = Home(
+            home = Team(
                 id = 40,
                 name = "FC Bayern",
                 shortName = "FC Bayern",
                 logo = "logo"
             ),
-            guest = Guest(
+            guest = Team(
                 id = 9,
                 name = "FC Schalke 04",
                 shortName = "Schalke 04",
@@ -191,7 +192,7 @@ class MatchDayRestControllerIntTest {
             id = 1,
             name = "1. Spieltag",
             firstMatchStartDateTime = ZonedDateTime.parse("2019-08-16T20:30+02:00[Europe/Berlin]"),
-            lastMatchStartDateTime =  ZonedDateTime.parse("2019-08-18T18:00+02:00[Europe/Berlin]"),
+            lastMatchStartDateTime = ZonedDateTime.parse("2019-08-18T18:00+02:00[Europe/Berlin]"),
             matches = matchesList
         )
 
@@ -332,7 +333,7 @@ class MatchDayRestControllerIntTest {
                     name = "2. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-08-23T18:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2019-08-25T16:00Z"),
-                     matches = null
+                    matches = null
                 ),
                 MatchDay(
                     id = 3,

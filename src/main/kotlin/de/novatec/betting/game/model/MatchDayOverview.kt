@@ -1,4 +1,4 @@
-package de.novatec.betting.game.matchday.model
+package de.novatec.betting.game.model
 
 data class MatchDayOverview(
     val current: Long?,

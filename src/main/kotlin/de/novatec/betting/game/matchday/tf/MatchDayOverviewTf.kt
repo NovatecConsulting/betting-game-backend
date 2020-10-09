@@ -1,7 +1,7 @@
 package de.novatec.betting.game.matchday.tf
 
-import de.novatec.betting.game.matchday.model.MatchDay
-import de.novatec.betting.game.matchday.model.MatchDayOverview
+import de.novatec.betting.game.model.MatchDay
+import de.novatec.betting.game.model.MatchDayOverview
 import de.novatec.betting.game.openliga.model.OLMatchDay
 import javax.inject.Singleton
 
@@ -38,7 +38,8 @@ class MatchDayOverviewTf {
         matchDayMap.forEach { (_, v) ->
             v.sortBy { it.matchDateTimeUTC } // sort by date in case it is not sorted already
             // Create the match day and fill it with the first and last match start times of the sorted list.
-            overviewList.add(MatchDay(
+            overviewList.add(
+                MatchDay(
                     id = v.first().group?.groupOrderID,
                     name = v.first().group?.groupName,
                     firstMatchStartDateTime = v.first().matchDateTimeUTC,
