@@ -42,6 +42,8 @@ dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-resteasy'
     implementation 'io.quarkus:quarkus-resteasy-jackson'
+    implementation 'io.quarkus:quarkus-agroal'
+    implementation 'io.quarkus:quarkus-jdbc-h2'
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'

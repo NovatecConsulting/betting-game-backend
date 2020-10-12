@@ -24,3 +24,14 @@ quarkus:
         expire-after-write: "PT10M"
       teams-cache:
         expire-after-write: "P1D"
+  datasource:
+    username: sa
+    password: password
+    db-kind: h2
+    jdbc:
+      driver: org.h2.Driver
+      url: jdbc:h2:mem:bbgdb;DB_CLOSE_DELAY=-1
+  #      url: jdbc:h2:~/bbgdb;DB_CLOSE_ON_EXIT=FALSE
+  hibernate-orm:
+    database:
+      generation: drop-and-create
