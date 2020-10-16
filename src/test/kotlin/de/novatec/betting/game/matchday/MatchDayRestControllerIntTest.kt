@@ -2,8 +2,10 @@ package de.novatec.betting.game.matchday
 
 
 import de.novatec.betting.game.model.MatchDay
-import de.novatec.betting.game.model.MatchDay.*
+import de.novatec.betting.game.model.MatchDay.Match
+import de.novatec.betting.game.model.MatchDay.Result
 import de.novatec.betting.game.model.MatchDayOverview
+import de.novatec.betting.game.model.Score
 import de.novatec.betting.game.model.Team
 import io.mockk.every
 import io.mockk.mockk
@@ -85,11 +87,11 @@ class MatchDayRestControllerIntTest {
             kickOffDateTime = ZonedDateTime.parse("2020-09-18T20:30+02:00[Europe/Berlin]"),
             matchIsFinished = false,
             result = Result(
-                final = Final(
+                final = Score(
                     goalsHome = 2,
                     goalsGuest = 0
                 ),
-                halftime = Halftime(
+                halftime = Score(
                     goalsHome = 3,
                     goalsGuest = 0
                 )
@@ -175,11 +177,11 @@ class MatchDayRestControllerIntTest {
             kickOffDateTime = ZonedDateTime.parse("2019-08-16T20:30+02:00[Europe/Berlin]"),
             matchIsFinished = false,
             result = Result(
-                final = Final(
+                final = Score(
                     goalsHome = 2,
                     goalsGuest = 0
                 ),
-                halftime = Halftime(
+                halftime = Score(
                     goalsHome = 3,
                     goalsGuest = 0
                 )

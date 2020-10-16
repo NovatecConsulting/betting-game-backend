@@ -3,6 +3,7 @@ package de.novatec.betting.game.model
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer
+import de.novatec.betting.game.model.MatchDay.Match
 import java.time.ZonedDateTime
 
 /**
@@ -52,29 +53,7 @@ data class MatchDay(
      * @property halftime The number of goals that were scored in the first half by each team.
      */
     data class Result(
-        val final: Final?,
-        val halftime: Halftime?
-    )
-
-    /**
-     * Contains information about the final number of goals of a match.
-     *
-     * @property goalsHome The number of goals that the home team scored.
-     * @property goalsGuest The number of goals that the guest team scored.
-     */
-    data class Final(
-        val goalsHome: Long?,
-        val goalsGuest: Long?
-    )
-
-    /**
-     * Contains information about the goals of the first half of a match.
-     *
-     * @property goalsHome The number of goals that the home team scored.
-     * @property goalsGuest The number of goals that the guest team scored.
-     */
-    data class Halftime(
-        val goalsHome: Long?,
-        val goalsGuest: Long?
+        val final: Score?,
+        val halftime: Score?
     )
 }

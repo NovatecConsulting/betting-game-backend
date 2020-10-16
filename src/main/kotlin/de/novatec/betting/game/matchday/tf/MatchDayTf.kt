@@ -1,10 +1,9 @@
 package de.novatec.betting.game.matchday.tf
 
 import de.novatec.betting.game.model.MatchDay
-import de.novatec.betting.game.model.MatchDay.Final
-import de.novatec.betting.game.model.MatchDay.Halftime
 import de.novatec.betting.game.model.MatchDay.Match
 import de.novatec.betting.game.model.MatchDay.Result
+import de.novatec.betting.game.model.Score
 import de.novatec.betting.game.model.Team
 import de.novatec.betting.game.openliga.model.OLMatchDay
 import java.time.ZoneId
@@ -51,11 +50,11 @@ class MatchDayTf {
 
         val matchResult = if (matchDay.matchResults.isNotEmpty()) {
             Result(
-                Final(
+                Score(
                     goalsHome = matchDay.matchResults[1].pointsTeam1,
                     goalsGuest = matchDay.matchResults[1].pointsTeam2
                 ),
-                Halftime(
+                Score(
                     goalsHome = matchDay.matchResults[0].pointsTeam1,
                     goalsGuest = matchDay.matchResults[0].pointsTeam2
                 )
