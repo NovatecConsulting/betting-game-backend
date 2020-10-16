@@ -1,0 +1,44 @@
+---
+openapi: 3.0.3
+info:
+  title: Betting Game Backend
+  description: Betting Game Backend for showcasing different frontend technologies
+  version: 0.0.1
+paths:
+  /matchdays/current:
+    get:
+      responses:
+        "200":
+          description: OK
+  /matchdays/current-season:
+    get:
+      responses:
+        "200":
+          description: OK
+  /matchdays/{season}:
+    get:
+      parameters:
+      - name: season
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /matchdays/{year}/{matchday}:
+    get:
+      parameters:
+      - name: matchday
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: year
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
