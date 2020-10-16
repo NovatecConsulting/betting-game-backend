@@ -5,19 +5,18 @@ import com.github.tomakehurst.wiremock.client.WireMock.*
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager
 import java.util.*
 
-
-class WiremockMatchDay: QuarkusTestResourceLifecycleManager {
+class WiremockMatchDay : QuarkusTestResourceLifecycleManager {
 
     private val wireMockServer = WireMockServer()
 
     override fun start(): MutableMap<String, String> {
         wireMockServer.start()
 
-        stubFor(get(urlEqualTo("/getmatchdata/bl1"))
-            .willReturn(aResponse()
-                .withHeader("Content-Type", "application/json")
-                .withBody(
-                    """
+        stubFor(
+            get(urlEqualTo("/getmatchdata/bl1")).willReturn(
+                aResponse().withHeader("Content-Type", "application/json")
+                    .withBody(
+                        """
 						[
                             {
                                 "MatchID": 55574,
@@ -52,13 +51,15 @@ class WiremockMatchDay: QuarkusTestResourceLifecycleManager {
                             }
                         ]
 						"""
-                )))
+                    )
+            )
+        )
 
-        stubFor(get(urlEqualTo("/getmatchdata/bl1/2019"))
-            .willReturn(aResponse()
-                .withHeader("Content-Type", "application/json")
-                .withBody(
-                    """
+        stubFor(
+            get(urlEqualTo("/getmatchdata/bl1/2019")).willReturn(
+                aResponse().withHeader("Content-Type", "application/json")
+                    .withBody(
+                        """
                         [
                             {
                                 "MatchID": 55277,
@@ -167,7 +168,35 @@ class WiremockMatchDay: QuarkusTestResourceLifecycleManager {
                                 }
                             ]
 						"""
-                )))
+                    )
+            )
+        )
+
+        stubFor(
+            get(urlEqualTo("/getAvailableTeams/bl1/2020")).willReturn(
+                aResponse().withHeader("Content-Type", "application/json")
+                    .withBody(
+                        """
+                            [
+                                {
+                                    "TeamId": 65,
+                                    "TeamName": "1. FC Köln",
+                                    "ShortName": "FC Köln",
+                                    "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/FC_Cologne_logo.svg/901px-FC_Cologne_logo.svg.png",
+                                    "TeamGroupName": null
+                                },                        
+                                {
+                                    "TeamId": 16,
+                                    "TeamName": "VfB Stuttgart",
+                                    "ShortName": "Stuttgart",
+                                    "TeamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/VfB_Stuttgart_1893_Logo.svg/921px-VfB_Stuttgart_1893_Logo.svg.png",
+                                    "TeamGroupName": null
+                                }
+                                    ]
+						"""
+                    )
+            )
+        )
 
         return Collections.singletonMap("openliga.restclient.OpenLigaAccessor/mp-rest/url", wireMockServer.baseUrl())
     }
