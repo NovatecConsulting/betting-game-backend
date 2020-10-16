@@ -6,7 +6,7 @@ name: CI with Gradle
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ bbg-33 ]
   pull_request:
     branches: [ master ]
 
