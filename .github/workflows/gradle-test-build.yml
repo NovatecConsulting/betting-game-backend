@@ -28,9 +28,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Grant execute permissions for Gradle
         run: chmod +x gradlew
-        
-      - name: Run tests
-        run: ./gradlew test
-        
+
       - name: Build with Gradle
         run: ./gradlew build
