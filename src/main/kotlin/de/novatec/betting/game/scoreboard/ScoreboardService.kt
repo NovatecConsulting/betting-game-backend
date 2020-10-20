@@ -40,5 +40,4 @@ class ScoreboardService(
         val olScoreboard = openLigaAccessor.getScoreboard(currentSeason)
         return scoreboardTf.oLScoreboardToScoreboard(olScoreboard)
     }
-
 }
