@@ -1,35 +1,13 @@
 package de.novatec.betting.game.scoreboard
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import de.novatec.betting.game.model.ScoreboardTeam
 import de.novatec.betting.game.openliga.OpenLigaAccessor
 import de.novatec.betting.game.openliga.model.OLScoreboardTeam
-=======
-import de.novatec.betting.game.matchday.matchDayOverviewTf
-=======
->>>>>>> Deleted comments
-import de.novatec.betting.game.model.ScoreboardTeam
-import de.novatec.betting.game.openliga.OpenLigaAccessor
-import de.novatec.betting.game.openliga.model.OLScoreboardTeam
-<<<<<<< HEAD
-import de.novatec.betting.game.openliga.model.OLTeam
->>>>>>> Added tests and documentation
-=======
->>>>>>> Deleted comments
 import de.novatec.betting.game.scoreboard.tf.ScoreboardTf
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkClass
 import io.mockk.verify
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import org.assertj.core.api.Assertions
-import org.eclipse.microprofile.config.inject.ConfigProperty
->>>>>>> Added tests and documentation
-=======
->>>>>>> Deleted comments
 import org.junit.jupiter.api.Test
 import utils.classification.UnitTest
 
