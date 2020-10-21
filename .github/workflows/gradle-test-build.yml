@@ -6,7 +6,7 @@ name: CI with Gradle
 # events but only for the master branch
 on:
   push:
-    branches: [ bbg-33 ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -35,11 +35,11 @@ jobs:
       - name: Upload Test Results
         uses: actions/upload-artifact@v2
         with:
-          name: test-results
+          name: Test Results
           path: build/test-results
 
       - name: Upload OpenAPI documentation
         uses: actions/upload-artifact@v2
         with:
-          name: Upload OpenAPI documentation
+          name: OpenAPI documentation
           path: build/docs
