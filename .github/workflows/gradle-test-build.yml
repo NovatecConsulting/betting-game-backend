@@ -31,3 +31,13 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Upload test-results
+          path: build/test-results
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Upload OpenAPI documentation
+          path: build/docs

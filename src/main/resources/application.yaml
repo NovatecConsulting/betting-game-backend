@@ -10,6 +10,6 @@ quarkus:
   swagger-ui:
     always-include: true
   smallrye-openapi:
-    store-schema-directory: src/docs
+    store-schema-directory: build/docs
 
 
