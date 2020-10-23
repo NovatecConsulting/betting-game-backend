@@ -18,15 +18,17 @@ dependencies {
     implementation 'io.quarkus:quarkus-resteasy'
     implementation 'io.quarkus:quarkus-resteasy-jackson'
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    compile group: 'io.quarkus', name: 'quarkus-smallrye-openapi', version: '1.8.2.Final'
 
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:kotlin-extensions'
 
-    testCompile 'io.mockk:mockk:1.10.0'
+    testCompile 'io.mockk:mockk:1.10.2'
     testCompile 'org.skyscreamer:jsonassert:1.5.0'
     testCompile 'com.github.tomakehurst:wiremock-jre8:2.27.0'
-    testCompile 'org.assertj:assertj-core:3.16.1'
+    testCompile 'org.assertj:assertj-core:3.17.1'
 
 }
 

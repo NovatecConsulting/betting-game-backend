@@ -1,6 +1,15 @@
+
 # OpenLiga Configuration
 openliga:
   restclient:
     OpenLigaAccessor/mp-rest/url: https://www.openligadb.de/api
     OpenLigaAccessor/mp-rest/scope: javax.inject.Singleton
   currentSeason: 2020
+
+quarkus:
+  swagger-ui:
+    always-include: true
+  smallrye-openapi:
+    store-schema-directory: build/docs
+
+
