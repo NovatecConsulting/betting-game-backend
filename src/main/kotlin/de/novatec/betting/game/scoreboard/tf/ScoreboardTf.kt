@@ -1,16 +1,23 @@
 package de.novatec.betting.game.scoreboard.tf
 
-import de.novatec.betting.game.model.Scoreboard
-import de.novatec.betting.game.model.Team
-import de.novatec.betting.game.openliga.model.OLScoreboard
+import de.novatec.betting.game.model.ScoreboardTeam
+import de.novatec.betting.game.openliga.model.OLScoreboardTeam
 import javax.inject.Singleton
 
+/** Transformer class used to generate a list of [ScoreboardTeam]. */
 @Singleton
 class ScoreboardTf {
 
-    fun oLScoreboardToScoreboard(olScoreboard: List<OLScoreboard>): List<Scoreboard> {
-        return olScoreboard.map {
-            Scoreboard(
+    /**
+     * Transforms a [List] of all [OLScoreboardTeam]s of a season to a list of [ScoreboardTeam].
+     *
+     * @param [List] of [OLScoreboardTeam]s
+     *
+     * @return A list of sorted [ScoreboardTeam]
+     */
+    fun oLScoreboardToScoreboard(olScoreboardTeam: List<OLScoreboardTeam>): List<ScoreboardTeam> {
+        return olScoreboardTeam.map {
+            ScoreboardTeam(
                 id = it.teamInfoId,
                 name = it.teamName,
                 shortName = it.shortName,
@@ -26,5 +33,4 @@ class ScoreboardTf {
             )
         }.toList()
     }
-
 }
