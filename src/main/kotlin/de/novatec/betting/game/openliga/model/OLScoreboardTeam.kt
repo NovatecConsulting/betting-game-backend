@@ -46,4 +46,3 @@ data class OLScoreboardTeam(
     @JsonProperty("GoalDiff")
     val goalDiff: Int? = null
 )
-
