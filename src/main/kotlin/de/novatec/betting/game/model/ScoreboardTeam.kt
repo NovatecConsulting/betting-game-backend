@@ -1,6 +1,6 @@
 package de.novatec.betting.game.model
 
-data class Scoreboard(
+data class ScoreboardTeam(
     val id: Long?,
     val name: String?,
     val shortName: String?,

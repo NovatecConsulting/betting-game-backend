@@ -7,6 +7,7 @@ import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
+/** Scoreboard controller which handles all endpoints regarding a scoreboard. */
 @Path("/scoreboard")
 class ScoreboardRestController(private val scoreboardService: ScoreboardService) {
 
@@ -15,5 +16,10 @@ class ScoreboardRestController(private val scoreboardService: ScoreboardService)
     @Produces(MediaType.APPLICATION_JSON)
     fun getTeams(@PathParam season: String): Response = Response.ok(scoreboardService.getScoreboard(season)).build()
 
+    /** Gets the [List] of MatchDays containing all pairings of the current Bundesliga match day. */
+    @GET
+    @Path("/current")
+    @Produces(MediaType.APPLICATION_JSON)
+    fun getCurrentMatchDay(): Response = Response.ok(scoreboardService.getCurrentScoreboard()).build()
 
 }

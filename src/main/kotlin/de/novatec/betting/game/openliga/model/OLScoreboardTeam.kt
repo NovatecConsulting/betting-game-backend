@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class OLScoreboard(
+data class OLScoreboardTeam(
     @JsonProperty("TeamInfoId")
     val teamInfoId: Long? = null,
     @JsonProperty("TeamName")
