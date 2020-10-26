@@ -1,7 +1,7 @@
 package de.novatec.betting.game.openliga
 
 import de.novatec.betting.game.openliga.model.OLMatchDay
-import de.novatec.betting.game.openliga.model.OLScoreboard
+import de.novatec.betting.game.openliga.model.OLScoreboardTeam
 import de.novatec.betting.game.openliga.model.OLTeam
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient
 import org.jboss.resteasy.annotations.jaxrs.PathParam
@@ -35,7 +35,7 @@ interface OpenLigaAccessor {
 
     @GET
     @Path("/getbltable/bl1/{season}")
-    fun getScoreboard(@PathParam season: String): List<OLScoreboard>
+    fun getScoreboard(@PathParam season: String): List<OLScoreboardTeam>
 
 
 }
