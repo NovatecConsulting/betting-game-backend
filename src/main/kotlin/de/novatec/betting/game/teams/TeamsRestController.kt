@@ -10,13 +10,12 @@ import javax.ws.rs.core.Response
 
 
 /**
- * Teams REST controller that handles all requests regarding teams information
+ * Teams REST controller that handles all requests regarding teams information.
  */
 @Path("/teams")
 class TeamsRestController(private val teamsService: TeamsService) {
 
-    /** Gets a [List] of all [Team]s for the specified Bundesliga season
-     */
+    /** Gets a [List] of all [Team]s for the specified Bundesliga season. */
     @GET
     @Path("/{season}")
     @Produces(APPLICATION_JSON)
