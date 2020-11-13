@@ -7,9 +7,16 @@ openliga:
   currentSeason: 2020
 
 quarkus:
+  # Swagger Configuration
   swagger-ui:
     always-include: true
   smallrye-openapi:
     store-schema-directory: build/docs
 
-
+  # Cache Configuration
+  cache:
+    caffeine:
+      match-day-cache:
+        expire-after-write: "PT10M"
+      teams-cache:
+        expire-after-write: "P1D"
