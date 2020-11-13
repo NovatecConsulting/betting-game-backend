@@ -7,6 +7,25 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer
 import java.time.LocalDateTime
 import java.time.ZonedDateTime
 
+/**
+ * Representation of the openliga database model of a match.
+ *
+ * @property matchID The unique identifier of the match.
+ * @property matchDateTime The date and time of the start of the match.
+ * @property timeZoneID The timezone information of the [matchDateTime].
+ * @property leagueId The unique identifier of the league.
+ * @property leagueName The name of the league, e.g. "1. Fußball-Bundesliga 2019/2020".
+ * @property matchDateTimeUTC The date and time of the start of the match in UTC.
+ * @property group Contains information about the group of the match, e.g which match day it is.
+ * @property team1 Information about the home team.
+ * @property team2 Information about the guest team.
+ * @property lastUpdateDateTime Timestamp of the last update for the match.
+ * @property matchIsFinished Indicator if the match is finished or not.
+ * @property matchResults The results of the match containing the half time and final score.
+ * @property goals All goals of the match.
+ * @property location The location of the match.
+ * @property numberOfViewers The number of viewers.
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class OLMatchDay(
     @JsonProperty("MatchID")

@@ -1,7 +1,10 @@
 package de.novatec.betting.game.matchday.tf
 
 import de.novatec.betting.game.model.MatchDay
-import de.novatec.betting.game.model.MatchDay.*
+import de.novatec.betting.game.model.MatchDay.Final
+import de.novatec.betting.game.model.MatchDay.Halftime
+import de.novatec.betting.game.model.MatchDay.Match
+import de.novatec.betting.game.model.MatchDay.Result
 import de.novatec.betting.game.model.Team
 import de.novatec.betting.game.openliga.model.OLMatchDay
 import java.time.ZoneId
