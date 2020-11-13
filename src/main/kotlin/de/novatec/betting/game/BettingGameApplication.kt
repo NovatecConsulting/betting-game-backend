@@ -1,5 +1,7 @@
 package de.novatec.betting.game
 
+import io.quarkus.runtime.Quarkus
+import io.quarkus.runtime.annotations.QuarkusMain
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition
 import org.eclipse.microprofile.openapi.annotations.info.Info
 import javax.ws.rs.core.Application
@@ -13,4 +15,17 @@ import javax.ws.rs.core.Application
         description = "Betting Game Backend for showcasing different frontend technologies"
     )
 )
-class BettingGameApplication : Application()
+@Suppress("SpreadOperator")
+@QuarkusMain
+class BettingGameApplication : Application() {
+    companion object {
+
+        /**
+         * main function is only needed to run/debug application in IntelliJ.
+         */
+        @JvmStatic
+        fun main(args: Array<String>) {
+            Quarkus.run(*args)
+        }
+    }
+}
