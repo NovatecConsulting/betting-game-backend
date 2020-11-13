@@ -7,6 +7,8 @@ openliga:
   currentSeason: 2020
 
 quarkus:
+  http:
+    cors: true
   # Swagger Configuration
   swagger-ui:
     always-include: true
