@@ -48,6 +48,13 @@ interface OpenLigaAccessor {
     @Path("/getAvailableTeams/bl1/{season}")
     fun getAllTeams(@PathParam season: Int): List<OLTeam>
 
+    /**
+     * Gets all [OLScoreboardTeam]s of a specific Bundesliga season.
+     *
+     * @param season The specific season to get the [OLScoreboardTeam]s from.
+     *
+     * @return A list of all [OLScoreboardTeam]s of the specified season.
+     */
     @GET
     @Path("/getbltable/bl1/{season}")
     fun getScoreboard(@PathParam season: String): List<OLScoreboardTeam>

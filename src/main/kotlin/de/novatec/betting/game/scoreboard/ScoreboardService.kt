@@ -14,6 +14,9 @@ class ScoreboardService(
     private val scoreboardTf: ScoreboardTf
 ) {
 
+    /**
+     * Current season, e.g. 2020
+     */
     @ConfigProperty(name = "openliga.currentSeason")
     lateinit var currentSeason: String
 
