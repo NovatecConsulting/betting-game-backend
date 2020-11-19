@@ -23,4 +23,8 @@ class ScoreboardRestController(private val scoreboardService: ScoreboardService)
     @Path("/current")
     @Produces(MediaType.APPLICATION_JSON)
     fun getCurrentScoreboard(): Response = Response.ok(scoreboardService.getCurrentScoreboard()).build()
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Refactoring
