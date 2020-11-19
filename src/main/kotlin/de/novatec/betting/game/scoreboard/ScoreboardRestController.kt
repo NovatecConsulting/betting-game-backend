@@ -11,15 +11,16 @@ import javax.ws.rs.core.Response
 @Path("/scoreboard")
 class ScoreboardRestController(private val scoreboardService: ScoreboardService) {
 
+    /** Gets the [List] of a specific scoreboard containing all pairings of the current Bundesliga match day. */
     @GET
     @Path("/{season}")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getTeams(@PathParam season: String): Response = Response.ok(scoreboardService.getScoreboard(season)).build()
+    fun getScoreboard(@PathParam season: String): Response = Response.ok(scoreboardService.getScoreboard(season))
+        .build()
 
-    /** Gets the [List] of MatchDays containing all pairings of the current Bundesliga match day. */
+    /** Gets the [List] of the current scoreboard containing all pairings of the current Bundesliga match day. */
     @GET
     @Path("/current")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getCurrentMatchDay(): Response = Response.ok(scoreboardService.getCurrentScoreboard()).build()
-
+    fun getCurrentScoreboard(): Response = Response.ok(scoreboardService.getCurrentScoreboard()).build()
 }
