@@ -20,5 +20,7 @@ quarkus:
     caffeine:
       match-day-cache:
         expire-after-write: "PT10M"
+      match-day-overview-cache:
+        expire-after-write: "PT10M"
       teams-cache:
         expire-after-write: "P1D"
