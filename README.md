@@ -1,3 +1,5 @@
+![CI with Gradle](https://github.com/NovatecConsulting/betting-game-backend/workflows/CI%20with%20Gradle/badge.svg) [![Pure Kotlin](https://img.shields.io/badge/100%25-kotlin-blue.svg)](https://kotlinlang.org/)
+
 # betting-game-backend
 Link to Frontend Repo: https://github.com/NovatecConsulting/betting-game-frontend
 
