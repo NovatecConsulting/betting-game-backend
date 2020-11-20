@@ -9,10 +9,12 @@ import de.novatec.betting.game.openliga.model.OLMatchDay
 import io.quarkus.cache.CacheResult
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.eclipse.microprofile.rest.client.inject.RestClient
+import javax.enterprise.context.ApplicationScoped
 import javax.inject.Singleton
 
 /** Service class that handles all the business actions that require the openliga-backend. */
-@Singleton
+//@Singleton
+@ApplicationScoped
 class MatchDayService(
     @RestClient private val openLigaAccessor: OpenLigaAccessor,
     private val matchDayOverviewTf: MatchDayOverviewTf,
@@ -28,7 +30,6 @@ class MatchDayService(
      *
      * @return A [List] of [OLMatchDay]s containing all pairings of the current season.
      */
-    @CacheResult(cacheName = "match-day-cache")
     fun getAllMatchesOfCurrentSeason(): MatchDayOverview = getAllMatchesOfSeason(currentSeason)
 
     /**
@@ -38,7 +39,7 @@ class MatchDayService(
      *
      * @return A [List] of [OLMatchDay]s containing all pairings of the specific season.
      */
-    @CacheResult(cacheName = "match-day-cache")
+    @CacheResult(cacheName = "match-day-overview-cache")
     fun getAllMatchesOfSeason(season: String): MatchDayOverview {
         val matchDays: List<OLMatchDay> = openLigaAccessor.getAllMatchesOfSeason(season)
         val currentMatchDays: List<OLMatchDay> = openLigaAccessor.getOLMatchesOfCurrentMatchday()
@@ -77,5 +78,9 @@ class MatchDayService(
     fun getCurrentMatchDay(): MatchDay? {
         val allOLMatches = openLigaAccessor.getOLMatchesOfCurrentMatchday()
         return matchDayTf.oLMatchesToMatchDayOverview(allOLMatches)
+    }
+
+    fun abc(): String {
+        return "test"
     }
 }
