@@ -18,9 +18,9 @@ class MatchDayBetRestController(private val matchDayBetService: MatchDayBetServi
 
     /** Gets the [MatchDayBet] for a given matchDay */
     @GET
-    @Path("/{matchDayId}")
-    fun getMatchDayBet(@PathParam matchDayId: Long): Response =
-        Response.ok(matchDayBetService.getMatchDayBet(matchDayId)).build()
+    @Path("/{matchDayId}/{userName}")
+    fun getMatchDayBet(@PathParam matchDayId: Long, @PathParam userName: String): Response =
+        Response.ok(matchDayBetService.getMatchDayBet(matchDayId, userName)).build()
 
     /** Persists the specified [MatchDayBet] */
     @POST

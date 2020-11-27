@@ -29,7 +29,7 @@ class MatchDayBetServiceUnitTest {
         every { matchDayBet.matchDayId } returns 1010
         every { matchDayBet.userName } returns "player"
 
-        matchDayBetService.getMatchDayBet(1010)
+        matchDayBetService.getMatchDayBet(1010, "player")
 
         verify { matchDayBetTf.betsToMatchDayBet(bets) }
     }

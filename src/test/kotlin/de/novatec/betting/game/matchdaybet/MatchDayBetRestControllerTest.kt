@@ -51,9 +51,9 @@ class MatchDayBetRestControllerTest {
         val matchBets: List<MatchBet> = listOf(MatchBet(111, Score(3, 1)), MatchBet(112, Score(1, 2)))
         val matchDayBet = MatchDayBet(1010, "player", matchBets)
 
-        every { matchDayBetService.getMatchDayBet(any()) } returns matchDayBet
+        every { matchDayBetService.getMatchDayBet(any(), any()) } returns matchDayBet
 
-        given().`when`()["/matchdaybets/1010"].then()
+        given().`when`()["/matchdaybets/1010/player"].then()
             .statusCode(200)
             .contentType(MediaType.APPLICATION_JSON)
             .body(JsonMatcher.jsonEqualTo(expectedResponse))
