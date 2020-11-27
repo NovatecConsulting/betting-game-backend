@@ -9,10 +9,8 @@ import javax.transaction.Transactional
 @Singleton
 class MatchDayBetService(private val betRepository: BetRepository, private val matchDayBetTf: MatchDayBetTf) {
 
-    private val userName = "player"
-
     /** returns the [MatchDayBet] for a given matchDay-ID */
-    fun getMatchDayBet(matchDayId: Long): MatchDayBet? {
+    fun getMatchDayBet(matchDayId: Long, userName: String): MatchDayBet? {
         val bets = betRepository.findByMatchDayIdAndUser(matchDayId, userName)
         return matchDayBetTf.betsToMatchDayBet(bets)
     }
@@ -22,7 +20,7 @@ class MatchDayBetService(private val betRepository: BetRepository, private val m
     fun addMatchDayBet(matchDayBet: MatchDayBet): MatchDayBet {
         val bets = matchDayBetTf.matchDayBetToBets(matchDayBet)
         bets?.forEach {
-            var bet = betRepository.findByUniqueKey(it.matchDayId!!, userName, it.matchId!!)
+            var bet = betRepository.findByUniqueKey(it.matchDayId!!, it.userName!!, it.matchId!!)
             if (bet == null) {
                 bet = it
             } else {
@@ -33,7 +31,7 @@ class MatchDayBetService(private val betRepository: BetRepository, private val m
         }
         return matchDayBetTf.betsToMatchDayBet(
             betRepository.findByMatchDayIdAndUser(
-                matchDayBet.matchDayId, userName
+                matchDayBet.matchDayId, matchDayBet.userName
             )
         )!!
     }
