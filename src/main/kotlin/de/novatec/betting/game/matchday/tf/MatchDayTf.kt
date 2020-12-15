@@ -38,11 +38,11 @@ class MatchDayTf {
 
     private fun firstMatchStartDateTime(olMatches: List<OLMatchDay>) =
         olMatches.sortedWith(compareBy { it.matchDateTime })
-            .first().matchDateTime?.atZone(ZoneId.of(ZoneId.systemDefault().toString()))
+            .first().matchDateTime?.atZone(ZoneId.of("UTC"))
 
     private fun lastMatchStartDateTime(olMatches: List<OLMatchDay>) =
         olMatches.sortedWith(compareBy { it.matchDateTime })
-            .last().matchDateTime?.atZone(ZoneId.of(ZoneId.systemDefault().toString()))
+            .last().matchDateTime?.atZone(ZoneId.of("UTC"))
 
     /**
      * Transforms a [OLMatchDay] Match into a [Match].

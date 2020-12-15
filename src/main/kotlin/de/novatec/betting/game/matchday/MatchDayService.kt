@@ -9,6 +9,7 @@ import de.novatec.betting.game.openliga.model.OLMatchDay
 import io.quarkus.cache.CacheResult
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.eclipse.microprofile.rest.client.inject.RestClient
+import java.time.Year
 import javax.inject.Singleton
 
 /** Service class that handles all the business actions that require the openliga-backend. */
@@ -61,8 +62,8 @@ class MatchDayService(
      * @return [MatchDay]s of the specific season
      */
     @CacheResult(cacheName = "match-day-cache")
-    fun getSpecificMatchDayOfSeason(season: String, matchDay: String): MatchDay? {
-        val matchDays: List<OLMatchDay> = openLigaAccessor.getAllMatchesOfSeason(season)
+    fun getSpecificMatchDayOfSeason(season: Int, matchDay: Int): MatchDay? {
+        val matchDays: List<OLMatchDay> = openLigaAccessor.getAllMatchesOfSeason(season.toString())
         val specificMatchDays = matchDays.filter { it.group?.groupOrderID == matchDay.toLong() }
         return matchDayTf.oLMatchesToMatchDayOverview(specificMatchDays)
     }

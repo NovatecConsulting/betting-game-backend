@@ -16,7 +16,6 @@ val openLigaAccessor: OpenLigaAccessor = mockk()
 val matchDayOverviewTf: MatchDayOverviewTf = mockk()
 val matchDayTf: MatchDayTf = mockk()
 
-
 @UnitTest
 class MatchDayServiceUnitTest {
 
