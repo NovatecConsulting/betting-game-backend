@@ -20,7 +20,7 @@ class MatchDayBetService(private val betRepository: BetRepository, private val m
     fun addMatchDayBet(matchDayBet: MatchDayBet): MatchDayBet {
         val bets = matchDayBetTf.matchDayBetToBets(matchDayBet)
         bets?.forEach {
-            var bet = betRepository.findByUniqueKey(it.matchDayId!!, it.userName!!, it.matchId!!)
+            var bet = betRepository.findByUniqueKey(it.matchDayId, it.userName, it.matchId)
             if (bet == null) {
                 bet = it
             } else {
