@@ -224,15 +224,6 @@ class MatchDayRestControllerIntTest {
         val requestBody = """
                 """
 
-        val expectedResponse = """
-                {
-                    "status": 404,
-                    "error": "Number Format Exception",
-                    "timestamp": "2020-11-28T12:23:04.617238500Z[UTC]",
-                    "message": "For input string: \"1s\""
-                }
-        """
-
         given()
             .contentType(MediaType.APPLICATION_JSON).body(requestBody)
             .`when`()["/matchdays/2019/malformed-id"]
@@ -446,7 +437,7 @@ class MatchDayRestControllerIntTest {
             )
         )
 
-        every { matchDayService.getAllMatchesOfSeason("2019") } returns matchDayOverview
+        every { matchDayService.getAllMatchesOfSeason(2019) } returns matchDayOverview
 
         given()
             .`when`()["/matchdays/2019"]

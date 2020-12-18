@@ -26,10 +26,10 @@ class TeamsServiceUnitTest {
         val olTeams = listOf(mockkClass(OLTeam::class), mockkClass(OLTeam::class))
         val teams = mockkClass(Teams::class)
 
-        every { openLigaAccessor.getAllTeams("2020") } returns olTeams
+        every { openLigaAccessor.getAllTeams(2019) } returns olTeams
         every { teamsTf.olTeamsToTeams(olTeams) } returns teams
         every { teams.teams } returns listOf(mockkClass(Team::class), mockkClass(Team::class))
-        val actual = service.getTeams("2020")
+        val actual = service.getTeams(2019)
         assertThat(actual.teams.size).isEqualTo(2)
     }
 

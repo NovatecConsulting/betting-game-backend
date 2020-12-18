@@ -26,14 +26,14 @@ class OpenLigaAccessorIntTest {
 
     @Test
     fun `GET - requests all matches of a specified season from the openliga api`() {
-        val result = openLigaAccessor.getAllMatchesOfSeason("2019")
+        val result = openLigaAccessor.getAllMatchesOfSeason(2019)
         assertThat(result.size).isEqualTo(1)
         assertThat(result[0].matchID).isEqualTo(55277L)
     }
 
     @Test
     fun `GET - request all teams of a specified season from the openliga api`() {
-        val result = openLigaAccessor.getAllTeams("2020")
+        val result = openLigaAccessor.getAllTeams(2020)
         assertThat(result.size).isEqualTo(2)
         assertThat(result.map { it.teamName }).containsExactly("1. FC Köln", "VfB Stuttgart")
     }

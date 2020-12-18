@@ -19,7 +19,7 @@ class TeamsService(@RestClient private val openLigaAccessor: OpenLigaAccessor, p
      * @return All [Teams] of the specified season
      */
     @CacheResult(cacheName = "teams-cache")
-    fun getTeams(season: String): Teams {
+    fun getTeams(season: Int): Teams {
         val olTeams = openLigaAccessor.getAllTeams(season)
         return teamsTf.olTeamsToTeams(olTeams)
     }

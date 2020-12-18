@@ -47,5 +47,5 @@ class MatchDayRestController(
     @Path("/{season}")
     @Produces(APPLICATION_JSON)
     fun getAllMatchesOfSeason(@PathParam season: Int): Response =
-        Response.ok(matchDayService.getAllMatchesOfSeason(Season(season, currentSeason).season.toString())).build()
+        Response.ok(matchDayService.getAllMatchesOfSeason(Season(season, currentSeason).season)).build()
 }

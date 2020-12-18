@@ -26,6 +26,6 @@ class TeamsRestController(private val teamsService: TeamsService) {
     @Path("/{season}")
     @Produces(APPLICATION_JSON)
     fun getTeams(@PathParam season: Int): Response =
-        Response.ok(teamsService.getTeams(Season(season, currentSeason).season.toString())).build()
+        Response.ok(teamsService.getTeams(Season(season, currentSeason).season)).build()
 
 }

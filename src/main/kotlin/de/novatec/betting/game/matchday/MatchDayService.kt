@@ -29,7 +29,7 @@ class MatchDayService(
      *
      * @return A [List] of [OLMatchDay]s containing all pairings of the current season.
      */
-    fun getAllMatchesOfCurrentSeason(): MatchDayOverview = getAllMatchesOfSeason(currentSeason)
+    fun getAllMatchesOfCurrentSeason(): MatchDayOverview = getAllMatchesOfSeason(currentSeason.toInt())
 
     /**
      * Gets all [OLMatchDay]s of a specific season.
@@ -39,7 +39,7 @@ class MatchDayService(
      * @return A [List] of [OLMatchDay]s containing all pairings of the specific season.
      */
     @CacheResult(cacheName = "match-day-overview-cache")
-    fun getAllMatchesOfSeason(season: String): MatchDayOverview {
+    fun getAllMatchesOfSeason(season: Int): MatchDayOverview {
         val matchDays: List<OLMatchDay> = openLigaAccessor.getAllMatchesOfSeason(season)
         val currentMatchDays: List<OLMatchDay> = openLigaAccessor.getOLMatchesOfCurrentMatchday()
 
@@ -63,7 +63,7 @@ class MatchDayService(
      */
     @CacheResult(cacheName = "match-day-cache")
     fun getSpecificMatchDayOfSeason(season: Int, matchDay: Int): MatchDay? {
-        val matchDays: List<OLMatchDay> = openLigaAccessor.getAllMatchesOfSeason(season.toString())
+        val matchDays: List<OLMatchDay> = openLigaAccessor.getAllMatchesOfSeason(season)
         val specificMatchDays = matchDays.filter { it.group?.groupOrderID == matchDay.toLong() }
         return matchDayTf.oLMatchesToMatchDayOverview(specificMatchDays)
     }

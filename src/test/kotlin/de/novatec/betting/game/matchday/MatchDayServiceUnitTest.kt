@@ -33,7 +33,7 @@ class MatchDayServiceUnitTest {
         val allMatchesOfSpecifiedSeason = listOf(firstMatchOfSpecifiedSeason)
         val currentMatchDayOfCurrentSeason = listOf(firstMatchOfCurrentMatchDay)
 
-        every { openLigaAccessor.getAllMatchesOfSeason("2019") } returns allMatchesOfSpecifiedSeason
+        every { openLigaAccessor.getAllMatchesOfSeason(2019) } returns allMatchesOfSpecifiedSeason
         every { openLigaAccessor.getOLMatchesOfCurrentMatchday() } returns currentMatchDayOfCurrentSeason
         every { firstMatchOfCurrentMatchDay.leagueName } returns "1. Fußball-Bundesliga 2020/2021"
         every { firstMatchOfSpecifiedSeason.leagueName } returns "1. Fußball-Bundesliga 2019/2020"
@@ -42,7 +42,7 @@ class MatchDayServiceUnitTest {
             MatchDayOverview::class
         )
 
-        cut.getAllMatchesOfSeason("2019")
+        cut.getAllMatchesOfSeason(2019)
 
         verify { matchDayOverviewTf.matchDaysToMatchDayOverview(allMatchesOfSpecifiedSeason) }
     }
@@ -54,7 +54,7 @@ class MatchDayServiceUnitTest {
         val allMatchesOfSpecifiedSeason = listOf(firstMatchOfSpecifiedSeason)
         val currentMatchDayOfCurrentSeason = listOf(firstMatchOfCurrentMatchDay)
 
-        every { openLigaAccessor.getAllMatchesOfSeason("2019") } returns allMatchesOfSpecifiedSeason
+        every { openLigaAccessor.getAllMatchesOfSeason(2019) } returns allMatchesOfSpecifiedSeason
         every { openLigaAccessor.getOLMatchesOfCurrentMatchday() } returns currentMatchDayOfCurrentSeason
         every { firstMatchOfCurrentMatchDay.leagueName } returns "1. Fußball-Bundesliga 2019/2020"
         every { firstMatchOfSpecifiedSeason.leagueName } returns "1. Fußball-Bundesliga 2019/2020"
@@ -66,7 +66,7 @@ class MatchDayServiceUnitTest {
             )
         } returns mockkClass(MatchDayOverview::class)
 
-        cut.getAllMatchesOfSeason("2019")
+        cut.getAllMatchesOfSeason(2019)
 
         verify { matchDayOverviewTf.matchDaysToMatchDayOverview(allMatchesOfSpecifiedSeason, 17L) }
     }
