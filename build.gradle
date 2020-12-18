@@ -52,6 +52,7 @@ dependencies {
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:kotlin-extensions'
     testImplementation 'com.tngtech.archunit:archunit:0.14.1'
+    testImplementation 'io.quarkus:quarkus-test-h2'
 
     testCompile 'io.mockk:mockk:1.10.2'
     testCompile 'org.skyscreamer:jsonassert:1.5.0'

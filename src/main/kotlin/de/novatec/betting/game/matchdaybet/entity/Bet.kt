@@ -25,28 +25,19 @@ data class Bet(
         @Id
         @GeneratedValue
         var id: Long? = null,
-        var matchDayId: Long? = null,
-        var userName: String? = null,
-        var matchId: Long? = null,
-        var goalsHome: Long? = null,
-        var goalsGuest: Long? = null
+        var matchDayId: Long,
+        var userName: String,
+        var matchId: Long,
+        var goalsHome: Long,
+        var goalsGuest: Long
 
 ) : Serializable {
-    constructor(matchDayId: Long?, userName: String?, matchId: Long?) : this(
-            null,
-            matchDayId,
-            userName,
-            matchId,
-            null,
-            null
-    )
-
-    constructor(matchDayId: Long?, userName: String?, matchId: Long?, goalsHome: Long?, goalsGuest: Long?) : this(
-            null,
-            matchDayId,
-            userName,
-            matchId,
-            goalsHome,
-            goalsGuest
+    constructor(matchDayId: Long, userName: String, matchId: Long, goalsHome: Long, goalsGuest: Long) : this(
+            id = null,
+            matchDayId = matchDayId,
+            userName = userName,
+            matchId = matchId,
+            goalsHome = goalsHome,
+            goalsGuest = goalsGuest
     )
 }
