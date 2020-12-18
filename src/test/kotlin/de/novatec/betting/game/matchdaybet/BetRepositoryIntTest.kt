@@ -2,12 +2,10 @@ package de.novatec.betting.game.matchdaybet
 
 import de.novatec.betting.game.matchdaybet.entity.Bet
 import io.quarkus.test.common.QuarkusTestResource
-import org.junit.jupiter.api.Assertions.*
 import io.quarkus.test.h2.H2DatabaseTestResource
 import io.quarkus.test.junit.QuarkusTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import utils.classification.IntegrationTest
 import javax.inject.Inject
@@ -21,10 +19,6 @@ internal class BetRepositoryIntTest {
 
     @Inject
     private lateinit var repository: BetRepository
-
-    private val bet1 = Bet(matchDayId = 1, matchId = 1, userName = "user1", goalsHome = 3, goalsGuest = 0)
-    private val bet2 = Bet(matchDayId = 1, matchId = 1, userName = "user2", goalsHome = 3, goalsGuest = 0)
-    private val bet3 = Bet(matchDayId = 1, matchId = 2, userName = "user1", goalsHome = 3, goalsGuest = 0)
 
     @AfterEach
     fun cleanUp() {
