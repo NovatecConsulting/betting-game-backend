@@ -18,9 +18,9 @@ class ScoreboardRestController(private val scoreboardService: ScoreboardService)
     fun getScoreboard(@PathParam season: String): Response = Response.ok(scoreboardService.getScoreboard(season))
         .build()
 
-    /** Gets the [List] of the current scoreboard containing all pairings of the current Bundesliga match day. */
+    /** Gets the [List] of MatchDays containing all pairings of the current Bundesliga match day. */
     @GET
     @Path("/current")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getCurrentScoreboard(): Response = Response.ok(scoreboardService.getCurrentScoreboard()).build()
+    fun getCurrentMatchDay(): Response = Response.ok(scoreboardService.getCurrentScoreboard()).build()
 }
