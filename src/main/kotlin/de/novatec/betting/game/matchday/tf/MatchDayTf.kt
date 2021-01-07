@@ -38,11 +38,11 @@ class MatchDayTf {
 
     private fun firstMatchStartDateTime(olMatches: List<OLMatchDay>) =
         olMatches.sortedWith(compareBy { it.matchDateTime })
-            .first().matchDateTime?.atZone(ZoneId.of("UTC"))
+            .first().matchDateTimeUTC
 
     private fun lastMatchStartDateTime(olMatches: List<OLMatchDay>) =
         olMatches.sortedWith(compareBy { it.matchDateTime })
-            .last().matchDateTime?.atZone(ZoneId.of("UTC"))
+            .last().matchDateTimeUTC
 
     /**
      * Transforms a [OLMatchDay] Match into a [Match].
@@ -78,7 +78,7 @@ class MatchDayTf {
                 shortName = matchDay.team2.shortName,
                 logo = matchDay.team2.teamIconUrl
             ),
-            kickOffDateTime = matchDay.matchDateTime?.atZone(ZoneId.of(ZoneId.systemDefault().toString())),
+            kickOffDateTime = matchDay.matchDateTimeUTC,
             matchIsFinished = matchDay.matchIsFinished,
             result = matchResult
         )
