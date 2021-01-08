@@ -30,4 +30,3 @@ data class ScoreboardTeam(
     val draw: Int?,
     val goalDiff: Int?
 )
-
