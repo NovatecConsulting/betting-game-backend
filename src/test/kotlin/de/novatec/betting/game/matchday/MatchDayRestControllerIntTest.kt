@@ -12,11 +12,14 @@ import io.mockk.mockk
 import io.quarkus.test.Mock
 import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured.given
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import utils.JsonMatcher
+import utils.MutableClock
 import utils.classification.IntegrationTest
 import java.time.ZonedDateTime
 import javax.enterprise.inject.Produces
+import javax.inject.Inject
 import javax.ws.rs.core.MediaType
 
 val matchDayService: MatchDayService = mockk()
@@ -25,9 +28,18 @@ val matchDayService: MatchDayService = mockk()
 @QuarkusTest
 class MatchDayRestControllerIntTest {
 
+
+    @Inject
+    lateinit var clock: MutableClock
+
     @Produces
     @Mock
     fun matchDayService(): MatchDayService = matchDayService
+
+    @BeforeEach
+    fun setTime() {
+        clock.setFixedTime("2017-08-20T12:34:56.789Z")
+    }
 
     @Test
     fun `GET - the response contains the current match day`() {
@@ -198,13 +210,86 @@ class MatchDayRestControllerIntTest {
             matches = matchesList
         )
 
-        every { matchDayService.getSpecificMatchDayOfSeason("2019", "1") } returns specificMatchDay
+        every { matchDayService.getSpecificMatchDayOfSeason(2019, 1) } returns specificMatchDay
 
         given()
             .`when`()["/matchdays/2019/1"]
             .then()
             .statusCode(200)
             .contentType(MediaType.APPLICATION_JSON)
+            .body(JsonMatcher.jsonEqualTo(expectedResponse))
+    }
+
+    @Test
+    fun `404  - the response contains the specific match day and malformed season`() {
+
+        val requestBody = """
+                """
+
+        given()
+            .contentType(MediaType.APPLICATION_JSON).body(requestBody)
+            .`when`()["/matchdays/2019/malformed-id"]
+            .then()
+            .statusCode(404)
+    }
+
+    @Test
+    fun `404  - the response contains a malformed match day and regular season`() {
+
+        val requestBody = """
+                """
+
+        given()
+            .contentType(MediaType.APPLICATION_JSON).body(requestBody)
+            .`when`()["/matchdays/2019/malformed-id"]
+            .then()
+            .statusCode(404)
+    }
+
+
+    @Test
+    fun `404  - the response contains not valid matchday`() {
+
+        val requestBody = """
+                """
+
+        val expectedResponse = """
+            {
+                "status": 404,
+                "error": "No Such Element Exception",
+                "timestamp": "2017-08-20T12:34:56.789Z",
+                "message": "Year 2000 is not valid."
+            }
+        """
+
+        given()
+            .contentType(MediaType.APPLICATION_JSON).body(requestBody)
+            .`when`()["/matchdays/2000/34"]
+            .then()
+            .statusCode(404)
+            .body(JsonMatcher.jsonEqualTo(expectedResponse))
+    }
+
+    @Test
+    fun `404  - the response contains not valid season`() {
+
+        val requestBody = """
+                """
+
+        val expectedResponse = """
+            {
+                "status": 404,
+                "error": "No Such Element Exception",
+                "timestamp": "2017-08-20T12:34:56.789Z",
+                "message": "Matchday 35 is not valid."
+            }
+        """
+
+        given()
+            .contentType(MediaType.APPLICATION_JSON).body(requestBody)
+            .`when`()["/matchdays/2019/35"]
+            .then()
+            .statusCode(404)
             .body(JsonMatcher.jsonEqualTo(expectedResponse))
     }
 
@@ -354,7 +439,7 @@ class MatchDayRestControllerIntTest {
             )
         )
 
-        every { matchDayService.getAllMatchesOfSeason("2019") } returns matchDayOverview
+        every { matchDayService.getAllMatchesOfSeason(2019) } returns matchDayOverview
 
         given()
             .`when`()["/matchdays/2019"]

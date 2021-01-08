@@ -34,7 +34,7 @@ interface OpenLigaAccessor {
     @GET
     @Path("/getmatchdata/bl1/{season}")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getAllMatchesOfSeason(@PathParam season: String): List<OLMatchDay>
+    fun getAllMatchesOfSeason(@PathParam season: Int): List<OLMatchDay>
 
     /**
      * Gets all [OLTeam]s of a specific Bundesliga season.
@@ -45,5 +45,5 @@ interface OpenLigaAccessor {
      */
     @GET
     @Path("/getAvailableTeams/bl1/{season}")
-    fun getAllTeams(@PathParam season: String): List<OLTeam>
+    fun getAllTeams(@PathParam season: Int): List<OLTeam>
 }

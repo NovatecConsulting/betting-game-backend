@@ -1,6 +1,9 @@
 package de.novatec.betting.game.matchday
 
+import de.novatec.betting.game.types.MatchDay
 import de.novatec.betting.game.openliga.model.OLMatchDay
+import org.eclipse.microprofile.config.inject.ConfigProperty
+import de.novatec.betting.game.types.Season
 import org.jboss.resteasy.annotations.jaxrs.PathParam
 import javax.ws.rs.GET
 import javax.ws.rs.Path
@@ -14,6 +17,10 @@ class MatchDayRestController(
     private val matchDayService: MatchDayService
 ) {
 
+    /** Config property that stores the current season, e.g. "2020". */
+    @ConfigProperty(name = "openliga.currentSeason")
+    lateinit var currentSeason: String
+
     /** Gets the [List] of MatchDays containing all pairings of the current Bundesliga match day. */
     @GET
     @Path("/current")
@@ -22,10 +29,12 @@ class MatchDayRestController(
 
     /** Gets the [List] of specific MatchDays containing all pairings of the current Bundeyliga match day. */
     @GET
-    @Path("/{year}/{matchday}")
+    @Path("/{season}/{matchday}")
     @Produces(APPLICATION_JSON)
-    fun getSpecificMatchDay(@PathParam year: String, @PathParam matchday: String): Response =
-        Response.ok(matchDayService.getSpecificMatchDayOfSeason(year, matchday)).build()
+    fun getSpecificMatchDay(@PathParam season: Int, @PathParam matchday: Int): Response {
+        return Response.ok(matchDayService.getSpecificMatchDayOfSeason(Season(season, currentSeason).season,
+        MatchDay(matchday).value)).build()
+    }
 
     /** Gets the [List] of [OLMatchDay]s containing all pairings of the current Bundesliga season. */
     @GET
@@ -37,6 +46,6 @@ class MatchDayRestController(
     @GET
     @Path("/{season}")
     @Produces(APPLICATION_JSON)
-    fun getAllMatchesOfSeason(@PathParam season: String): Response =
-        Response.ok(matchDayService.getAllMatchesOfSeason(season)).build()
+    fun getAllMatchesOfSeason(@PathParam season: Int): Response =
+        Response.ok(matchDayService.getAllMatchesOfSeason(Season(season, currentSeason).season)).build()
 }
