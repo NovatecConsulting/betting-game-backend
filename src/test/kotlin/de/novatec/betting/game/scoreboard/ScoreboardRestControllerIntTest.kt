@@ -6,6 +6,7 @@ import io.mockk.mockk
 import io.quarkus.test.Mock
 import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured.given
+import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.junit.jupiter.api.Test
 import utils.JsonMatcher
 import utils.classification.IntegrationTest
@@ -21,6 +22,9 @@ class ScoreboardRestControllerIntTest {
     @Produces
     @Mock
     fun scoreBoardService(): ScoreboardService = scoreboardService
+
+    @ConfigProperty(name = "openliga.currentSeason")
+    lateinit var currentSeason: String
 
     @Test
     fun `GET - the response contains the specified season scoreboard`() {
@@ -88,7 +92,7 @@ class ScoreboardRestControllerIntTest {
             )
         )
 
-        every { scoreboardService.getScoreboard("2019") } returns matchDays
+        every { scoreboardService.getScoreboard(2019) } returns matchDays
 
         given()
             .`when`()["/scoreboard/2019"]
@@ -164,7 +168,7 @@ class ScoreboardRestControllerIntTest {
             )
         )
 
-        every { scoreboardService.getCurrentScoreboard() } returns matchDays
+        every { scoreboardService.getScoreboard(currentSeason.toInt()) } returns matchDays
 
         given()
             .`when`()["/scoreboard/current"]

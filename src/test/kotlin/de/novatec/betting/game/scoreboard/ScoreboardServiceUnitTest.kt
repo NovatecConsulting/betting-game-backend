@@ -25,16 +25,11 @@ class ScoreboardServiceUnitTest {
         val olScoreboardTeam = listOf(mockkClass(OLScoreboardTeam::class), mockkClass(OLScoreboardTeam::class))
         val scoreboardTeam = listOf(mockkClass(ScoreboardTeam::class))
 
-        every { openLigaAccessor.getScoreboard("2019") } returns olScoreboardTeam
+        every { openLigaAccessor.getScoreboard(2019) } returns olScoreboardTeam
         every { scoreboardTf.oLScoreboardToScoreboard(olScoreboardTeam) } returns scoreboardTeam
 
-        service.getScoreboard("2019")
+        service.getScoreboard(2019)
 
         verify { scoreboardTf.oLScoreboardToScoreboard(olScoreboardTeam) }
     }
-
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> ec695bf55411fefd5086802407291a79731de96b
