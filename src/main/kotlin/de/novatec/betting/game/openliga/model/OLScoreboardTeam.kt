@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * Contains information of a Bundesliga team.
  *
  * @property teamInfoId The unique identifier of a team.
- * @property teamName The name of a team, e.g. RB Leipzig.
- * @property shortName The shortened name of a team, e.g. RBL.
+ * @property teamName The name of a team, e.g. VfB Stuttgart.
+ * @property shortName The shortened name of a team, e.g. VfB.
  * @property teamIconUrl Contains a URL where the team logo can be queried.
  * @property points Contains the points, the team has achieved.
  * @property opponentGoals Number of goals taken.

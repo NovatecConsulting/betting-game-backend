@@ -2,7 +2,7 @@ package de.novatec.betting.game.scoreboard.tf
 
 import de.novatec.betting.game.model.ScoreboardTeam
 import de.novatec.betting.game.openliga.model.OLScoreboardTeam
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import utils.classification.UnitTest
 
@@ -47,31 +47,31 @@ class ScoreboardTfUnitTest {
 
         val result: List<ScoreboardTeam> = cut.oLScoreboardToScoreboard(matchDays)
 
-        Assertions.assertThat(result[0].id).isEqualTo(40)
-        Assertions.assertThat(result[0].name).isEqualTo("FC Bayern")
-        Assertions.assertThat(result[0].shortName).isEqualTo("FC Bayern")
-        Assertions.assertThat(result[0].logo).isEqualTo("")
-        Assertions.assertThat(result[0].points).isEqualTo(78)
-        Assertions.assertThat(result[0].opponentGoals).isEqualTo(32)
-        Assertions.assertThat(result[0].goals).isEqualTo(88)
-        Assertions.assertThat(result[0].matches).isEqualTo(34)
-        Assertions.assertThat(result[0].won).isEqualTo(24)
-        Assertions.assertThat(result[0].lost).isEqualTo(4)
-        Assertions.assertThat(result[0].draw).isEqualTo(6)
-        Assertions.assertThat(result[0].goalDiff).isEqualTo(56)
+        assertThat(result[0].id).isEqualTo(40)
+        assertThat(result[0].name).isEqualTo("FC Bayern")
+        assertThat(result[0].shortName).isEqualTo("FC Bayern")
+        assertThat(result[0].logo).isEqualTo("")
+        assertThat(result[0].points).isEqualTo(78)
+        assertThat(result[0].opponentGoals).isEqualTo(32)
+        assertThat(result[0].goals).isEqualTo(88)
+        assertThat(result[0].matches).isEqualTo(34)
+        assertThat(result[0].won).isEqualTo(24)
+        assertThat(result[0].lost).isEqualTo(4)
+        assertThat(result[0].draw).isEqualTo(6)
+        assertThat(result[0].goalDiff).isEqualTo(56)
 
-        Assertions.assertThat(result[1].id).isEqualTo(7)
-        Assertions.assertThat(result[1].name).isEqualTo("Borussia Dortmund")
-        Assertions.assertThat(result[1].shortName).isEqualTo("Dortmund")
-        Assertions.assertThat(result[1].logo).isEqualTo("")
-        Assertions.assertThat(result[1].points).isEqualTo(76)
-        Assertions.assertThat(result[1].opponentGoals).isEqualTo(44)
-        Assertions.assertThat(result[1].goals).isEqualTo(81)
-        Assertions.assertThat(result[1].matches).isEqualTo(34)
-        Assertions.assertThat(result[1].won).isEqualTo(23)
-        Assertions.assertThat(result[1].lost).isEqualTo(4)
-        Assertions.assertThat(result[1].draw).isEqualTo(7)
-        Assertions.assertThat(result[1].goalDiff).isEqualTo(37)
+        assertThat(result[1].id).isEqualTo(7)
+        assertThat(result[1].name).isEqualTo("Borussia Dortmund")
+        assertThat(result[1].shortName).isEqualTo("Dortmund")
+        assertThat(result[1].logo).isEqualTo("")
+        assertThat(result[1].points).isEqualTo(76)
+        assertThat(result[1].opponentGoals).isEqualTo(44)
+        assertThat(result[1].goals).isEqualTo(81)
+        assertThat(result[1].matches).isEqualTo(34)
+        assertThat(result[1].won).isEqualTo(23)
+        assertThat(result[1].lost).isEqualTo(4)
+        assertThat(result[1].draw).isEqualTo(7)
+        assertThat(result[1].goalDiff).isEqualTo(37)
 
     }
 }
