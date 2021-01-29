@@ -1,6 +1,7 @@
 package de.novatec.betting.game.openliga
 
 import de.novatec.betting.game.openliga.model.OLMatchDay
+import de.novatec.betting.game.openliga.model.OLScoreboardTeam
 import de.novatec.betting.game.openliga.model.OLTeam
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient
 import org.jboss.resteasy.annotations.jaxrs.PathParam
@@ -46,4 +47,16 @@ interface OpenLigaAccessor {
     @GET
     @Path("/getAvailableTeams/bl1/{season}")
     fun getAllTeams(@PathParam season: Int): List<OLTeam>
+
+    /**
+     * Gets all [OLScoreboardTeam]s of a specific Bundesliga season.
+     *
+     * @param season The specific season to get the [OLScoreboardTeam]s from.
+     *
+     * @return A list of all [OLScoreboardTeam]s of the specified season.
+     */
+    @GET
+    @Path("/getbltable/bl1/{season}")
+    fun getScoreboard(@PathParam season: Int): List<OLScoreboardTeam>
+
 }
