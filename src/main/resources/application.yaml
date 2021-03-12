@@ -35,3 +35,7 @@ quarkus:
   hibernate-orm:
     database:
       generation: drop-and-create
+
+# Scheduler configuration
+cron:
+  interval: 10m
