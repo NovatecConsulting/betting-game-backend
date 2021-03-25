@@ -39,13 +39,6 @@ class MatchDayBetRestController(
         return Response.ok(matchDayBetService.addMatchDayBet(matchDayBet)).build()
     }
 
-    @GET
-    @Path("/user")
-    @Produces(MediaType.TEXT_PLAIN)
-    fun getUserPrincipalName(@Context context: SecurityContext): String {
-        return context.userPrincipal.name
-    }
-
     data class MatchDayBetRequest(
         val matchDayId: Long,
         val matchBets: List<MatchBet>?
