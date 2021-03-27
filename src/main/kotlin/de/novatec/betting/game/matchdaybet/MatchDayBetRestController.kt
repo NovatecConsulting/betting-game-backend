@@ -39,7 +39,8 @@ class MatchDayBetRestController(
         return Response.ok(matchDayBetService.addMatchDayBet(matchDayBet)).build()
     }
 
-    /** Class that handles the mapping of MatchDayBetRequest to MatchDayBet
+    /**
+     * Class that handles the mapping of MatchDayBetRequest to MatchDayBet
      * @property matchDayId the id of the match day
      * @property matchBets a list of [MatchBet]s
      */
@@ -47,7 +48,8 @@ class MatchDayBetRestController(
         val matchDayId: Long,
         val matchBets: List<MatchBet>?
     ) {
-        /** Mapping to MatchDayBet
+        /**
+         * Mapping to MatchDayBet
          */
         fun toMatchDayBet(userName: String): MatchDayBet {
             return MatchDayBet(
