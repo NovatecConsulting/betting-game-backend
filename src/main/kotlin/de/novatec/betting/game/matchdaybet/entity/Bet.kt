@@ -25,11 +25,11 @@ data class Bet(
         @Id
         @GeneratedValue
         var id: Long? = null,
-        var matchDayId: Long,
-        var userName: String,
-        var matchId: Long,
-        var goalsHome: Long,
-        var goalsGuest: Long
+        var matchDayId: Long = 0,
+        var userName: String = "",
+        var matchId: Long = 0,
+        var goalsHome: Long = 0,
+        var goalsGuest: Long = 0
 
 ) : Serializable {
     constructor(matchDayId: Long, userName: String, matchId: Long, goalsHome: Long, goalsGuest: Long) : this(
