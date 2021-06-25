@@ -5,6 +5,7 @@ import com.github.tomakehurst.wiremock.client.WireMock.*
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager
 import java.util.*
 
+@Suppress("MaxLineLength")
 class WiremockMatchDay : QuarkusTestResourceLifecycleManager {
 
     private val wireMockServer = WireMockServer()
