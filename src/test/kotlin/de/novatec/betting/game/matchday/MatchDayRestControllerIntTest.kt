@@ -158,11 +158,11 @@ class MatchDayRestControllerIntTest {
                             "matchIsFinished": false,
                             "result": {
                                 "final": {
-                                    "goalsHome": 3,
+                                    "goalsHome": 2,
                                     "goalsGuest": 0
                                 },
                                 "halftime": {
-                                    "goalsHome": 2,
+                                    "goalsHome": 3,
                                     "goalsGuest": 0
                                 }
                             }
@@ -190,11 +190,11 @@ class MatchDayRestControllerIntTest {
             matchIsFinished = false,
             result = Result(
                 final = Score(
-                    goalsHome = 3,
+                    goalsHome = 2,
                     goalsGuest = 0
                 ),
                 halftime = Score(
-                    goalsHome = 2,
+                    goalsHome = 3,
                     goalsGuest = 0
                 )
             )
