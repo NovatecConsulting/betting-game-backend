@@ -29,14 +29,10 @@ class MatchDayBetService(private val betRepository: BetRepository, private val m
             }
             betRepository.persist(bet)
         }
-        return matchDayBet.userName?.let {
+        return matchDayBetTf.betsToMatchDayBet(
             betRepository.findByMatchDayIdAndUser(
-                matchDayBet.matchDayId, it
+                matchDayBet.matchDayId, matchDayBet.userName
             )
-        }?.let {
-            matchDayBetTf.betsToMatchDayBet(
-                it
-            )
-        }!!
+        )!!
     }
 }

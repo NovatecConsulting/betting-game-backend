@@ -12,8 +12,7 @@ class MatchDayBetTf {
 
     /** Transforms a [MatchDayBet] into a sequence of [Bet]s */
     fun matchDayBetToBets(matchDayBet: MatchDayBet) = matchDayBet.matchBets?.map {
-        Bet(matchDayBet.matchDayId, matchDayBet.userName.toString(), it.matchId, it.result.goalsHome,
-            it.result.goalsGuest)
+        Bet(matchDayBet.matchDayId, matchDayBet.userName, it.matchId, it.result.goalsHome, it.result.goalsGuest)
     }?.toList()
 
     /** Transforms a list of [Bet]s to a list of [MatchDayBet]s */

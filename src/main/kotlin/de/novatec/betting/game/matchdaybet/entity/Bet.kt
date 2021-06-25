@@ -1,11 +1,7 @@
 package de.novatec.betting.game.matchdaybet.entity
 
 import java.io.Serializable
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.Table
-import javax.persistence.UniqueConstraint
+import javax.persistence.*
 
 @Entity
 @Table(
@@ -25,11 +21,11 @@ data class Bet(
         @Id
         @GeneratedValue
         var id: Long? = null,
-        var matchDayId: Long = 0,
-        var userName: String = "",
-        var matchId: Long = 0,
-        var goalsHome: Long = 0,
-        var goalsGuest: Long = 0
+        var matchDayId: Long,
+        var userName: String,
+        var matchId: Long,
+        var goalsHome: Long,
+        var goalsGuest: Long
 
 ) : Serializable {
     constructor(matchDayId: Long, userName: String, matchId: Long, goalsHome: Long, goalsGuest: Long) : this(

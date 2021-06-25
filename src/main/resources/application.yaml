@@ -35,17 +35,3 @@ quarkus:
   hibernate-orm:
     database:
       generation: drop-and-create
-
-mp:
-  jwt:
-    verify:
-      publickey:
-        location: META-INF/resources/publicKey.pem
-      issuer: https://betting-game.eu.auth0.com/
-
-smallrye:
-  jwt:
-    path:
-      groups: permissions
-
-
