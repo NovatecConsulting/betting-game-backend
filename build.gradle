@@ -1,12 +1,12 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.3.72'
-    id 'org.jetbrains.kotlin.plugin.allopen' version '1.3.72'
-    id 'io.quarkus'
-    id 'io.gitlab.arturbosch.detekt' version '1.14.1'
-    id 'org.jetbrains.kotlin.plugin.noarg' version '1.3.72'
+    id "org.jetbrains.kotlin.jvm" version "${kotlinPluginVersion}"
+    id "org.jetbrains.kotlin.plugin.allopen" version "${kotlinPluginVersion}"
+    id "org.jetbrains.kotlin.plugin.noarg" version "${kotlinPluginVersion}"
+    id "io.quarkus"
+    id "io.gitlab.arturbosch.detekt" version "${detektVersion}"
 }
 
-group 'io.gitlab.arturbosch'
+group "io.gitlab.arturbosch"
 
 
 repositories {
@@ -35,35 +35,34 @@ detekt {
 tasks.detekt.jvmTarget = "1.8"
 
 dependencies {
-    implementation 'io.quarkus:quarkus-config-yaml'
-    implementation 'io.quarkus:quarkus-kotlin'
-    implementation 'io.quarkus:quarkus-rest-client'
-    implementation 'io.quarkus:quarkus-cache'
-    implementation 'io.quarkus:quarkus-hibernate-orm-panache-kotlin'
+    implementation "io.quarkus:quarkus-config-yaml"
+    implementation "io.quarkus:quarkus-kotlin"
+    implementation "io.quarkus:quarkus-rest-client"
+    implementation "io.quarkus:quarkus-cache"
+    implementation "io.quarkus:quarkus-hibernate-orm-panache-kotlin"
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
-    implementation 'io.quarkus:quarkus-resteasy'
-    implementation 'io.quarkus:quarkus-resteasy-jackson'
-    implementation 'io.quarkus:quarkus-agroal'
-    implementation 'io.quarkus:quarkus-jdbc-h2'
-    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+    implementation "io.quarkus:quarkus-resteasy"
+    implementation "io.quarkus:quarkus-resteasy-jackson"
+    implementation "io.quarkus:quarkus-agroal"
+    implementation "io.quarkus:quarkus-jdbc-h2"
+    implementation "io.quarkus:quarkus-smallrye-openapi"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-    compile group: 'io.quarkus', name: 'quarkus-smallrye-openapi', version: '1.8.2.Final'
+    testImplementation "io.quarkus:quarkus-junit5"
+    testImplementation "io.quarkus:quarkus-test-h2"
+    testImplementation "io.rest-assured:kotlin-extensions"
+    testImplementation "com.tngtech.archunit:archunit:${archUnitVersion}"
 
-    testImplementation 'io.quarkus:quarkus-junit5'
-    testImplementation 'io.rest-assured:kotlin-extensions'
-    testImplementation 'com.tngtech.archunit:archunit:0.14.1'
-    testImplementation 'io.quarkus:quarkus-test-h2'
-
-    testCompile 'io.mockk:mockk:1.10.2'
-    testCompile 'org.skyscreamer:jsonassert:1.5.0'
-    testCompile 'com.github.tomakehurst:wiremock-jre8:2.27.0'
-    testCompile 'org.assertj:assertj-core:3.17.1'
+    testCompile "io.mockk:mockk:${mockkVersion}"
+    testCompile "org.skyscreamer:jsonassert:${jsonassertVersion}"
+    testCompile "com.github.tomakehurst:wiremock-jre8:${wiremockVersion}"
+    testCompile "org.assertj:assertj-core:${assertjCoreVersion}"
 
 }
 
-group 'org.acme'
-version '1.0.0-SNAPSHOT'
+group "org.acme"
+version "1.0.0-SNAPSHOT"
 
 quarkus {
     setOutputDirectory("$projectDir/build/classes/kotlin/main")
@@ -81,7 +80,7 @@ allOpen {
 }
 
 noArg {
-    annotation('javax.persistence.Entity')
+    annotation("javax.persistence.Entity")
 }
 
 java {

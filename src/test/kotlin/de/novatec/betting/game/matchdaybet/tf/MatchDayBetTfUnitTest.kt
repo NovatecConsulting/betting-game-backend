@@ -72,20 +72,42 @@ class MatchDayBetTfUnitTest {
         @JvmStatic
         fun provide_betsToMatchDayBets_Input() = Stream.of(
             // empty input
-            Arguments.of(emptyList<Bet>(), emptyList<MatchDayBet>())
+            Arguments.of(emptyList<Bet>(), emptyList<MatchDayBet>()),
             // simple input
-            , Arguments.of(listOf(Bet(12345, "Jürgen", 21, 4, 2)), listOf(MatchDayBet(12345, "Jürgen", listOf(MatchBet(21, Score(4, 2)))))),
-            Arguments.of(listOf(Bet(12345, "Jürgen", 21, 4, 2), Bet(12345, "Jürgen", 22, 3, 1)),
-                listOf(MatchDayBet(12345, "Jürgen", listOf(MatchBet(21, Score(4, 2)), MatchBet(22, Score(3, 1))))))
+            Arguments.of(
+                listOf(Bet(12345, "Jürgen", 21, 4, 2)),
+                listOf(MatchDayBet(12345, "Jürgen", listOf(MatchBet(21, Score(4, 2)))))),
+            Arguments.of(
+                listOf(
+                    Bet(12345, "Jürgen", 21, 4, 2),
+                    Bet(12345, "Jürgen", 22, 3, 1)),
+                listOf(
+                    MatchDayBet(12345, "Jürgen", listOf(
+                        MatchBet(21, Score(4, 2)),
+                        MatchBet(22, Score(3, 1)))))),
             // more than one user name
-            , Arguments.of(listOf(Bet(12345, "Jürgen", 21, 4, 2), Bet(12345, "Hansi", 22, 3, 1)),
-            listOf(MatchDayBet(12345, "Jürgen", listOf(MatchBet(21, Score(4, 2)))), MatchDayBet(12345, "Hansi", listOf(MatchBet(22, Score(3, 1))))))
+            Arguments.of(
+                listOf(
+                    Bet(12345, "Jürgen", 21, 4, 2),
+                    Bet(12345, "Hansi", 22, 3, 1)),
+                listOf(
+                    MatchDayBet(12345, "Jürgen", listOf(MatchBet(21, Score(4, 2)))),
+                    MatchDayBet(12345, "Hansi", listOf(MatchBet(22, Score(3, 1)))))),
             // more than one match Day
-            , Arguments.of(
-            listOf(Bet(12345, "Jürgen", 21, 4, 2), Bet(12345, "Jürgen", 23, 3, 2), Bet(12345, "Hansi", 21, 0, 1), Bet(12346, "Jürgen", 22, 3, 1),
-                Bet(12346, "Hansi", 22, 1, 2)), listOf(MatchDayBet(12345, "Jürgen", listOf(MatchBet(21, Score(4, 2)), MatchBet(23, Score(3, 2)))),
-            MatchDayBet(12345, "Hansi", listOf(MatchBet(21, Score(0, 1)))), MatchDayBet(12346, "Jürgen", listOf(MatchBet(22, Score(3, 1)))),
-            MatchDayBet(12346, "Hansi", listOf(MatchBet(22, Score(1, 2)))))))
+            Arguments.of(
+                listOf(
+                    Bet(12345, "Jürgen", 21, 4, 2),
+                    Bet(12345, "Jürgen", 23, 3, 2),
+                    Bet(12345, "Hansi", 21, 0, 1),
+                    Bet(12346, "Jürgen", 22, 3, 1),
+                    Bet(12346, "Hansi", 22, 1, 2)),
+                listOf(
+                    MatchDayBet(12345, "Jürgen", listOf(
+                        MatchBet(21, Score(4, 2)),
+                        MatchBet(23, Score(3, 2)))),
+                    MatchDayBet(12345, "Hansi", listOf(MatchBet(21, Score(0, 1)))),
+                    MatchDayBet(12346, "Jürgen", listOf(MatchBet(22, Score(3, 1)))),
+                    MatchDayBet(12346, "Hansi", listOf(MatchBet(22, Score(1, 2)))))))
 
         @JvmStatic
         fun provide_betsToMatchDayBet_Input() = Stream.of(
