@@ -51,12 +51,12 @@ class MatchDayTf {
         val matchResult = if (matchDay.matchResults.isNotEmpty()) {
             Result(
                 Score(
-                    goalsHome = matchDay.matchResults[1].pointsTeam1,
-                    goalsGuest = matchDay.matchResults[1].pointsTeam2
-                ),
-                Score(
                     goalsHome = matchDay.matchResults[0].pointsTeam1,
                     goalsGuest = matchDay.matchResults[0].pointsTeam2
+                ),
+                Score(
+                    goalsHome = matchDay.matchResults[1].pointsTeam1,
+                    goalsGuest = matchDay.matchResults[1].pointsTeam2
                 )
             )
         } else {
