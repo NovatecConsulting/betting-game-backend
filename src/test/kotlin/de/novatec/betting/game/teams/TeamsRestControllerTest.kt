@@ -1,6 +1,5 @@
 package de.novatec.betting.game.teams
 
-import de.novatec.betting.game.matchday.MatchDayService
 import de.novatec.betting.game.model.Team
 import de.novatec.betting.game.model.Teams
 import io.mockk.every
