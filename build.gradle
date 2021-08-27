@@ -48,11 +48,13 @@ dependencies {
     implementation "io.quarkus:quarkus-smallrye-openapi"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "io.quarkus:quarkus-smallrye-jwt"
 
     testImplementation "io.quarkus:quarkus-junit5"
     testImplementation "io.quarkus:quarkus-test-h2"
     testImplementation "io.rest-assured:kotlin-extensions"
     testImplementation "com.tngtech.archunit:archunit:${archUnitVersion}"
+    testImplementation "io.quarkus:quarkus-test-security"
 
     testCompile "io.mockk:mockk:${mockkVersion}"
     testCompile "org.skyscreamer:jsonassert:${jsonassertVersion}"
