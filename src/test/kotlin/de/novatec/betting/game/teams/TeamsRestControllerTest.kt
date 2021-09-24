@@ -79,12 +79,12 @@ class TeamsRestControllerTest {
                 "status": 404,
                 "error": "No Such Element Exception",
                 "timestamp": "2017-08-20T12:34:56.789Z",
-                "message": "Year 2021 is not valid."
+                "message": "Year 2022 is not valid."
             }
         """
 
         given().contentType(MediaType.APPLICATION_JSON).body(requestBody)
-            `when`()["/teams/2021"].then()
+            `when`()["/teams/2022"].then()
             .statusCode(404)
             .body(JsonMatcher.jsonEqualTo(expectedResponse))
     }
