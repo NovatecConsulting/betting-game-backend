@@ -1,9 +1,9 @@
 package de.novatec.betting.game.matchday
 
-import de.novatec.betting.game.types.MatchDay
 import de.novatec.betting.game.openliga.model.OLMatchDay
-import org.eclipse.microprofile.config.inject.ConfigProperty
+import de.novatec.betting.game.types.MatchDay
 import de.novatec.betting.game.types.Season
+import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.jboss.resteasy.annotations.jaxrs.PathParam
 import javax.ws.rs.GET
 import javax.ws.rs.Path
@@ -27,7 +27,7 @@ class MatchDayRestController(
     @Produces(APPLICATION_JSON)
     fun getCurrentMatchDay(): Response = Response.ok(matchDayService.getCurrentMatchDay()).build()
 
-    /** Gets the [List] of specific MatchDays containing all pairings of the current Bundeyliga match day. */
+    /** Gets the [List] of specific MatchDays containing all pairings of the current Bundesliga match day. */
     @GET
     @Path("/{season}/{matchday}")
     @Produces(APPLICATION_JSON)
