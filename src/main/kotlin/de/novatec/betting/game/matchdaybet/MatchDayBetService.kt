@@ -1,5 +1,6 @@
 package de.novatec.betting.game.matchdaybet
 
+import de.novatec.betting.game.matchdaybet.entity.Bet
 import de.novatec.betting.game.matchdaybet.tf.MatchDayBetTf
 import de.novatec.betting.game.model.MatchDayBet
 import javax.inject.Singleton
@@ -9,11 +10,14 @@ import javax.transaction.Transactional
 @Singleton
 class MatchDayBetService(private val betRepository: BetRepository, private val matchDayBetTf: MatchDayBetTf) {
 
-    /** returns the [MatchDayBet] for a given matchDay-ID */
+    /** returns the [MatchDayBet] for a given matchDay-ID and user */
     fun getMatchDayBet(matchDayId: Long, userName: String): MatchDayBet? {
         val bets = betRepository.findByMatchDayIdAndUser(matchDayId, userName)
         return matchDayBetTf.betsToMatchDayBet(bets)
     }
+
+    /** returns the list of [Bet]s for a given matchDay-ID */
+    fun getMatchDayBets(matchDayId: Long): List<Bet> = betRepository.findByMatchDayId(matchDayId)
 
     /** Places bets for a matchDay - existing bets are updated */
     @Transactional
@@ -35,4 +39,8 @@ class MatchDayBetService(private val betRepository: BetRepository, private val m
             )
         )!!
     }
+
+    /** Updates the given [Bet]. **/
+    @Transactional
+    fun updateBet(bet: Bet) = betRepository.persist(bet)
 }

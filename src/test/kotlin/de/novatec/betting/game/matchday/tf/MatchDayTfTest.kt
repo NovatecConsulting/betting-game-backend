@@ -33,8 +33,8 @@ class MatchDayTfTest {
 
         Assertions.assertThat(result.id).isEqualTo(2L)
         Assertions.assertThat(result.name).isEqualTo("2. Spieltag")
-        Assertions.assertThat(result.matches?.get(0)?.home?.name).isEqualTo("Eintracht Frankfurt")
-        Assertions.assertThat(result.matches?.get(0)?.guest?.name).isEqualTo("1. FC Köln")
-        Assertions.assertThat(result.matches?.get(0)?.matchIsFinished).isEqualTo(false)
+        Assertions.assertThat(result.matches.get(0)?.home?.name).isEqualTo("Eintracht Frankfurt")
+        Assertions.assertThat(result.matches.get(0)?.guest?.name).isEqualTo("1. FC Köln")
+        Assertions.assertThat(result.matches.get(0)?.matchIsFinished).isEqualTo(false)
     }
 }

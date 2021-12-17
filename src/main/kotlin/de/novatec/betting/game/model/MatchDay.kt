@@ -23,7 +23,7 @@ data class MatchDay(
     @JsonSerialize(using = ToStringSerializer::class)
     val lastMatchStartDateTime: ZonedDateTime?,
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    val matches: List<Match>?
+    val matches: List<Match>
 ) {
 
     /**

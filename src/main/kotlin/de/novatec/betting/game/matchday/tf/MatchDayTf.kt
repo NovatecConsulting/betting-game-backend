@@ -28,7 +28,7 @@ class MatchDayTf {
             lastMatchStartDateTime = lastMatchStartDateTime(oLMatches),
             matches = oLMatches.map {
                 oLMatchToMatch(it)
-            }
+            }.orEmpty()
         )
 
     private fun getMatchDayName(matchDay: OLMatchDay) = matchDay.group?.groupName

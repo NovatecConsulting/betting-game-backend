@@ -335,28 +335,28 @@ class MatchDayRestControllerIntTest {
                     name = "1. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2020-09-19T13:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2020-09-19T13:30Z"),
-                    matches = null
+                    matches = emptyList()
                 ),
                 MatchDay(
                     id = 2,
                     name = "2. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2020-09-26T13:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2020-09-26T13:30Z"),
-                    matches = null
+                    matches = emptyList()
                 ),
                 MatchDay(
                     id = 3,
                     name = "3. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2020-10-03T13:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2020-10-03T13:30Z"),
-                    matches = null
+                    matches = emptyList()
                 ),
                 MatchDay(
                     id = 4,
                     name = "4. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2020-10-17T13:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2020-10-17T13:30Z"),
-                    matches = null
+                    matches = emptyList()
                 )
             )
         )
@@ -413,28 +413,28 @@ class MatchDayRestControllerIntTest {
                     name = "1. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-08-16T18:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2019-08-18T16:00Z"),
-                    matches = null
+                    matches = emptyList()
                 ),
                 MatchDay(
                     id = 2,
                     name = "2. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-08-23T18:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2019-08-25T16:00Z"),
-                    matches = null
+                    matches = emptyList()
                 ),
                 MatchDay(
                     id = 3,
                     name = "3. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-08-30T18:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2019-09-01T16:00Z"),
-                    matches = null
+                    matches = emptyList()
                 ),
                 MatchDay(
                     id = 4,
                     name = "4. Spieltag",
                     firstMatchStartDateTime = ZonedDateTime.parse("2019-09-13T18:30Z"),
                     lastMatchStartDateTime = ZonedDateTime.parse("2019-09-15T16:00Z"),
-                    matches = null
+                    matches = emptyList()
                 )
             )
         )

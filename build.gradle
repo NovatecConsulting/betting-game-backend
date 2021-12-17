@@ -46,6 +46,7 @@ dependencies {
     implementation "io.quarkus:quarkus-agroal"
     implementation "io.quarkus:quarkus-jdbc-h2"
     implementation "io.quarkus:quarkus-smallrye-openapi"
+    implementation "io.quarkus:quarkus-scheduler"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "io.quarkus:quarkus-smallrye-jwt"
@@ -60,6 +61,7 @@ dependencies {
     testCompile "org.skyscreamer:jsonassert:${jsonassertVersion}"
     testCompile "com.github.tomakehurst:wiremock-jre8:${wiremockVersion}"
     testCompile "org.assertj:assertj-core:${assertjCoreVersion}"
+    testCompile("org.junit.jupiter:junit-jupiter-params")
 
 }
 
