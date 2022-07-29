@@ -51,5 +51,4 @@ class MatchDayBetServiceUnitTest {
         verify { matchDayBetTf.betsToMatchDayBet(bets) }
         verify { matchDayBetTf.matchDayBetToBets(matchDayBet) }
     }
-
 }

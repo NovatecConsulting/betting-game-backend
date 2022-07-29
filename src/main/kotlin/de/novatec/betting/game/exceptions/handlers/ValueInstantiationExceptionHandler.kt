@@ -18,7 +18,7 @@ import javax.ws.rs.ext.Provider
 @ApplicationScoped
 class ValueInstantiationExceptionHandler(
     private val clock: Clock
-): ExceptionMapper<ValueInstantiationException> {
+) : ExceptionMapper<ValueInstantiationException> {
 
     override fun toResponse(ex: ValueInstantiationException): Response {
         val exception = getException(ex)

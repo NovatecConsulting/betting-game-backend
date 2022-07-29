@@ -32,8 +32,12 @@ class MatchDayRestController(
     @Path("/{season}/{matchday}")
     @Produces(APPLICATION_JSON)
     fun getSpecificMatchDay(@PathParam season: Int, @PathParam matchday: Int): Response {
-        return Response.ok(matchDayService.getSpecificMatchDayOfSeason(Season(season, currentSeason).season,
-        MatchDay(matchday).value)).build()
+        return Response.ok(
+            matchDayService.getSpecificMatchDayOfSeason(
+                Season(season, currentSeason).season,
+                MatchDay(matchday).value
+            )
+        ).build()
     }
 
     /** Gets the [List] of [OLMatchDay]s containing all pairings of the current Bundesliga season. */

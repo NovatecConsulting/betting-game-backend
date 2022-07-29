@@ -9,7 +9,6 @@ import de.novatec.betting.game.openliga.model.OLMatchDay
 import io.quarkus.cache.CacheResult
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.eclipse.microprofile.rest.client.inject.RestClient
-import java.time.Year
 import javax.inject.Singleton
 
 /** Service class that handles all the business actions that require the openliga-backend. */

@@ -10,7 +10,6 @@ import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType.APPLICATION_JSON
 import javax.ws.rs.core.Response
 
-
 /**
  * Teams REST controller that handles all requests regarding teams information.
  */
@@ -27,5 +26,4 @@ class TeamsRestController(private val teamsService: TeamsService) {
     @Produces(APPLICATION_JSON)
     fun getTeams(@PathParam season: Int): Response =
         Response.ok(teamsService.getTeams(Season(season, currentSeason).season)).build()
-
 }

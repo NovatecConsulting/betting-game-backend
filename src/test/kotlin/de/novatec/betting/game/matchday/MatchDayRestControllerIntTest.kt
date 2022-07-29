@@ -1,6 +1,5 @@
 package de.novatec.betting.game.matchday
 
-
 import de.novatec.betting.game.model.MatchDay
 import de.novatec.betting.game.model.MatchDay.Match
 import de.novatec.betting.game.model.MatchDay.Result
@@ -27,7 +26,6 @@ val matchDayService: MatchDayService = mockk()
 @IntegrationTest
 @QuarkusTest
 class MatchDayRestControllerIntTest {
-
 
     @Inject
     lateinit var clock: MutableClock
@@ -245,7 +243,6 @@ class MatchDayRestControllerIntTest {
             .then()
             .statusCode(404)
     }
-
 
     @Test
     fun `404  - the response contains not valid matchday`() {

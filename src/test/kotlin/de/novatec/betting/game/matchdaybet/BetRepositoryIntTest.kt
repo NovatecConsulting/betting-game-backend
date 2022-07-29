@@ -58,5 +58,4 @@ internal class BetRepositoryIntTest {
 
         assertThat(bet).isEqualTo(bet1)
     }
-
 }

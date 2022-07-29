@@ -19,7 +19,6 @@ class ScoreboardRestController(private val scoreboardService: ScoreboardService)
     @ConfigProperty(name = "openliga.currentSeason")
     lateinit var currentSeason: String
 
-
     /** Gets the [List] of a specific scoreboard containing all pairings of the current Bundesliga match day. */
     @GET
     @Path("/{season}")

@@ -8,7 +8,9 @@ package de.novatec.betting.game.model
  * @property matchBets a list of [MatchBet]s
  */
 data class MatchDayBet(
-    val matchDayId: Long, val userName: String, val matchBets: List<MatchBet>?
+    val matchDayId: Long,
+    val userName: String,
+    val matchBets: List<MatchBet>?
 )
 
 /**
@@ -17,6 +19,4 @@ data class MatchDayBet(
  * @property matchId the id of the match
  * @property result the result of the bet
  */
-data class MatchBet(
-    val matchId: Long, val result: Score
-)
+data class MatchBet(val matchId: Long, val result: Score)

@@ -21,5 +21,4 @@ class MutableClock : Clock() {
     fun reset() {
         delegate = Clock.systemUTC()
     }
-
 }

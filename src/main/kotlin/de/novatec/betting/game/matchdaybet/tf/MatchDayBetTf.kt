@@ -19,8 +19,8 @@ class MatchDayBetTf {
     fun betsToMatchDayBets(bets: List<Bet>) = bets
         .groupBy(
             keySelector = { Pair(it.matchDayId, it.userName) },
-            valueTransform = { MatchBet(it.matchId, Score(it.goalsHome, it.goalsGuest)) })
-        .map { MatchDayBet(it.key.first, it.key.second, it.value) }
+            valueTransform = { MatchBet(it.matchId, Score(it.goalsHome, it.goalsGuest)) }
+        ).map { MatchDayBet(it.key.first, it.key.second, it.value) }
         .toList()
 
     /** Transforms a list of [Bet]s to a [MatchDayBet]. If the specified [Bet]s contain to more than a

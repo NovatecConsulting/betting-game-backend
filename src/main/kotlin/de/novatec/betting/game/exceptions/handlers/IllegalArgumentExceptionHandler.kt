@@ -18,7 +18,7 @@ import javax.ws.rs.ext.Provider
 @ApplicationScoped
 class IllegalArgumentExceptionHandler(
     private val clock: Clock
-): ExceptionMapper<IllegalArgumentException> {
+) : ExceptionMapper<IllegalArgumentException> {
 
     override fun toResponse(exception: IllegalArgumentException?): Response {
         val errorDescription = exception?.message?.let {
@@ -31,6 +31,5 @@ class IllegalArgumentExceptionHandler(
         }
         return Response.status(HttpStatus.SC_NOT_FOUND).type(MediaType.APPLICATION_JSON)
             .entity(errorDescription).build()
-
     }
 }

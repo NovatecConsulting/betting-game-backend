@@ -6,7 +6,6 @@ import de.novatec.betting.game.model.MatchDay.Result
 import de.novatec.betting.game.model.Score
 import de.novatec.betting.game.model.Team
 import de.novatec.betting.game.openliga.model.OLMatchDay
-import java.time.ZoneId
 import javax.inject.Singleton
 
 /** Transformer class used to generate the [MatchDay] including respective [Match]es. */
