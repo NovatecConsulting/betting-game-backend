@@ -31,5 +31,4 @@ class TeamsTfUnitTest {
             Team(id = 65, shortName = "FC Köln", name = "1. FC Köln", logo = null)
         )
     }
-
 }

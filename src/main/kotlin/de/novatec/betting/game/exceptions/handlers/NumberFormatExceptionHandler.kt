@@ -18,7 +18,7 @@ import javax.ws.rs.ext.Provider
 @ApplicationScoped
 class NumberFormatExceptionHandler(
     private val clock: Clock
-): ExceptionMapper<NumberFormatException> {
+) : ExceptionMapper<NumberFormatException> {
 
     override fun toResponse(exception: NumberFormatException): Response {
         val errorDescription = exception.message?.let {
@@ -29,7 +29,7 @@ class NumberFormatExceptionHandler(
                 message = it
             )
         }
-        return Response.status(HttpStatus.SC_NOT_FOUND).type(MediaType.APPLICATION_JSON).
-        entity(errorDescription).build()
+        return Response.status(HttpStatus.SC_NOT_FOUND).type(MediaType.APPLICATION_JSON)
+            .entity(errorDescription).build()
     }
 }

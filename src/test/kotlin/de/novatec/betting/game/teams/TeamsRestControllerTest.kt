@@ -99,5 +99,4 @@ class TeamsRestControllerTest {
         `when`()["/teams/malformed-id"].then()
             .statusCode(404)
     }
-
 }

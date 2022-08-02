@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType.APPLICATION_JSON
 import javax.ws.rs.core.Response
 import javax.ws.rs.core.SecurityContext
 
-
 /** Match day bet controller which handles all endpoints regarding a match day bet. */
 @Path("/matchdaybets")
 @Consumes(APPLICATION_JSON)

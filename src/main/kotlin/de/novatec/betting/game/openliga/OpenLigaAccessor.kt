@@ -58,5 +58,4 @@ interface OpenLigaAccessor {
     @GET
     @Path("/getbltable/bl1/{season}")
     fun getScoreboard(@PathParam season: Int): List<OLScoreboardTeam>
-
 }

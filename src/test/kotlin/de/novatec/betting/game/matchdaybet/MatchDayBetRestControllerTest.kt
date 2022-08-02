@@ -129,13 +129,13 @@ class MatchDayBetRestControllerTest {
         every { matchDayBetService.addMatchDayBet(matchDayBet) } returns matchDayBet
 
         given().contentType(MediaType.APPLICATION_JSON)
-                .body(request)
-                .`when`()
-                .post("/matchdaybets/")
-                .then()
-                .statusCode(200)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(JsonMatcher.jsonEqualTo(expectedResponse))
+            .body(request)
+            .`when`()
+            .post("/matchdaybets/")
+            .then()
+            .statusCode(200)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(JsonMatcher.jsonEqualTo(expectedResponse))
     }
 
     @Test
@@ -163,19 +163,23 @@ class MatchDayBetRestControllerTest {
         every { matchDayBetService.addMatchDayBet(matchDayBet) } returns matchDayBet
 
         given().contentType(MediaType.APPLICATION_JSON)
-                .body(request)
-                .`when`()
-                .post("/matchdaybets/")
-                .then()
-                .statusCode(400)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(JsonMatcher.jsonEqualTo("""
+            .body(request)
+            .`when`()
+            .post("/matchdaybets/")
+            .then()
+            .statusCode(400)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(
+                JsonMatcher.jsonEqualTo(
+                    """
                     {
                         "status":400,
                         "error":"NotValidException",
                         "timestamp":"2021-01-01T01:01:00Z",
                         "message":"Goals 100 is not valid."
                     }
-                """.trimIndent()))
+                    """.trimIndent()
+                )
+            )
     }
 }

@@ -9,7 +9,8 @@ import de.novatec.betting.game.exceptions.NotValidException
  * @property goalsGuest the number of goals for the guest team
  */
 data class Score(
-        val goalsHome: Long, val goalsGuest: Long
+    val goalsHome: Long,
+    val goalsGuest: Long
 ) {
 
     companion object {

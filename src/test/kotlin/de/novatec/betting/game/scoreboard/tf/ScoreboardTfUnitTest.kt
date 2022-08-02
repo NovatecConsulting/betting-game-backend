@@ -72,6 +72,5 @@ class ScoreboardTfUnitTest {
         assertThat(result[1].lost).isEqualTo(4)
         assertThat(result[1].draw).isEqualTo(7)
         assertThat(result[1].goalDiff).isEqualTo(37)
-
     }
 }

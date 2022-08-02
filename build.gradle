@@ -20,7 +20,7 @@ repositories {
 }
 
 detekt {
-    failFast = true // fail build on any finding
+    allRules=true
     buildUponDefaultConfig = true // preconfigure defaults
     config = files("$projectDir/detekt/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
     baseline = file("$projectDir/detekt/baseline.xml") // a way of suppressing issues before introducing detekt
@@ -61,6 +61,7 @@ dependencies {
     testCompile "com.github.tomakehurst:wiremock-jre8:${wiremockVersion}"
     testCompile "org.assertj:assertj-core:${assertjCoreVersion}"
 
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:${detektVersion}"
 }
 
 group "org.acme"

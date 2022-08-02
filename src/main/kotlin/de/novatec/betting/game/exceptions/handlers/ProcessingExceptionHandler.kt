@@ -29,7 +29,7 @@ class ProcessingExceptionHandler(
                 message = it
             )
         }
-        return Response.status(HttpStatus.SC_NOT_FOUND).type(MediaType.APPLICATION_JSON).
-        entity(errorDescription).build()
+        return Response.status(HttpStatus.SC_NOT_FOUND).type(MediaType.APPLICATION_JSON)
+            .entity(errorDescription).build()
     }
 }

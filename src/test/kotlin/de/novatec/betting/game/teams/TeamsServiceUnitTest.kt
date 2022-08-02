@@ -32,7 +32,4 @@ class TeamsServiceUnitTest {
         val actual = service.getTeams(2019)
         assertThat(actual.teams.size).isEqualTo(2)
     }
-
 }
-
-

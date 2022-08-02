@@ -21,7 +21,7 @@ class BettingGameArchTest {
 
     private fun loadMainClasses(): JavaClasses {
         return ClassFileImporter().importPackages(ALL_PACKAGES)
-            .that(object: DescribedPredicate<JavaClass>("are no tests") {
+            .that(object : DescribedPredicate<JavaClass>("are no tests") {
                 override fun apply(input: JavaClass): Boolean {
                     return !input.name.contains("Test")
                 }
